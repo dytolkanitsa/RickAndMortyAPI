@@ -89,8 +89,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return 60
     }
     
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let characterVC = DetailViewController()
