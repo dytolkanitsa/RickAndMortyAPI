@@ -17,14 +17,13 @@ final class ViewController: UIViewController {
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
         return table
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        tableView.frame = view.bounds
+        
         setupTableView()
         setupSearchBar()
         
@@ -43,6 +42,12 @@ final class ViewController: UIViewController {
     }
     
     private func setupTableView(){
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         tableView.dataSource = self
         tableView.delegate = self
         title = "Characters"
@@ -54,7 +59,6 @@ final class ViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         searchController.obscuresBackgroundDuringPresentation = false
     }
-    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -66,10 +70,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         let character = response?.results[indexPath.row]
         cell.textLabel?.text = character?.name
         cell.textLabel?.numberOfLines = 0
-        
+
         do {
             if let url = URL(string: character!.image) {
                 let data = try Data(contentsOf: url)
