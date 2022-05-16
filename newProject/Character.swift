@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Character {
     let idOfCh: Int
@@ -16,6 +17,7 @@ struct Character {
     let genderOfCh: String
     let originPlace: String
     let currenlocation: String
+    let imageOfCh: String
     
     init?(characterData:  CharacterData) {
         idOfCh = characterData.id
@@ -26,5 +28,6 @@ struct Character {
         genderOfCh = characterData.gender.rawValue
         originPlace = characterData.origin.name
         currenlocation = characterData.location.name
+        imageOfCh = characterData.image
     }
 }

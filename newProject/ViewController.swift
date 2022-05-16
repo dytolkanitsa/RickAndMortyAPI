@@ -13,14 +13,18 @@ final class ViewController: UIViewController {
     private let nerworkCharacterManager = NetworkManager()
     private var response: SearchResponse? = nil
     private let searchController = UISearchController()
+    var character: CharacterData? = nil
     
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = 100
         return table
     }()
     
     override func viewDidLoad() {
+        // always add UIView before setting constraints
         super.viewDidLoad()
         view.addSubview(tableView)
         
@@ -41,6 +45,7 @@ final class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup View and SearchBar
     private func setupTableView(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -61,6 +66,7 @@ final class ViewController: UIViewController {
     }
 }
 
+    // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,17 +75,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
-        let character = response?.results[indexPath.row]
-        cell.textLabel?.text = character?.name
-        cell.textLabel?.numberOfLines = 0
-
+        character = response?.results[indexPath.row]
+        var image = UIImage()
+        
         do {
             if let url = URL(string: character!.image) {
                 let data = try Data(contentsOf: url)
-                let image = UIImage(data: data)
-                cell.imageView?.image = image
+                image = UIImage(data: data)!
             }
             else {
                 cell.imageView?.backgroundColor = .systemGray
@@ -87,26 +91,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         } catch {
             print(error)
         }
+        cell.set(character: character!, image: image)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let characterVC = DetailViewController()
             characterVC.modalPresentationStyle = .fullScreen
             let charactObj = response?.results[indexPath.row]
             guard let character = charactObj else { return }
-            characterVC.characterNameTitle = character.name
+//            characterVC.characterNameTitle = character!.name
             characterVC.characterInformation(character: character)
             self.navigationController?.pushViewController(characterVC, animated: true)
         }
     }
 }
 
+    // MARK: - UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
