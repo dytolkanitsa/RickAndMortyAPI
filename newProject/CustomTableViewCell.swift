@@ -2,23 +2,21 @@
 //  CustomTableViewCell.swift
 //  newProject
 //
-//  Created by Толканица Дарья Юрьевна on 15.05.2022.
+//  Created by Толканица Дарья on 15.05.2022.
 //
 
 import UIKit
 
 final class CustomTableViewCell: UITableViewCell {
 
-    let identifier = "cell"
-    private let characterImageView = UIImageView()
+    var safeArea: UILayoutGuide!
+    private let characterImageView = CustomImageView()
     private let characterNameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(characterImageView)
-        addSubview(characterNameLabel)
-        
+        safeArea = layoutMarginsGuide
         configureImageView()
         configureNameLabel()
     }
@@ -27,6 +25,14 @@ final class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(character: CharacterData){
+        if let url = URL(string: character.image) {
+            characterImageView.loadImage(from: url)
+        }
+        characterNameLabel.text = character.name
+    }
+    
+    // MARK: - Configuration
     private func configureImageView() {
         characterImageView.layer.cornerRadius = 10
         characterImageView.clipsToBounds = true
@@ -41,21 +47,18 @@ final class CustomTableViewCell: UITableViewCell {
         setNameLabel()
     }
     
-    func set(character: CharacterData, image: UIImage){
-        characterImageView.image = image
-        characterNameLabel.text = character.name
-    }
-    
+    // MARK: - Setup
     private func setImageView() {
+        addSubview(characterImageView)
         characterImageView.translatesAutoresizingMaskIntoConstraints = false
-        characterImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        characterImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        characterImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        characterImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        characterImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -340).isActive = true
+        characterImageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
+        characterImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        characterImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        characterImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     private func setNameLabel() {
+        addSubview(characterNameLabel)
         characterNameLabel.translatesAutoresizingMaskIntoConstraints = false
         characterNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         characterNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20).isActive = true

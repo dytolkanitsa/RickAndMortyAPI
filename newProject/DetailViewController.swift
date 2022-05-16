@@ -11,48 +11,40 @@ final class DetailViewController: UIViewController {
    
     private var myScrollView = UIScrollView()
     private var myStackView = UIStackView()
-    private var characterNameTitle = ""
     private let nameLabel = UILabel()
     private var infoArray = [String]()
-    private var imageView = UIImageView()
+    private let imageView = CustomImageView()
+    var character: CharacterData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupScroll()
         setupLabel()
+        setupStack()
+        setupData()
+        createImage()
         makeLabelArray()
     }
     
-    func characterInformation(character: CharacterData) {
-        let charStruct = Character(characterData: character)
-        characterNameTitle = charStruct!.nameOfCh
-        infoArray.append("Name: \(charStruct?.nameOfCh ?? "-")")
-        infoArray.append("Status: \(charStruct?.statusOfCh ?? "-")")
-        infoArray.append("Species: \(charStruct?.speciesOfCh ?? "-")")
-        infoArray.append("Type: \(charStruct?.typeOfCh ?? "-")")
-        infoArray.append("Gender: \(charStruct?.genderOfCh ?? "-")")
-        infoArray.append("Origin place: \(charStruct?.originPlace ?? "-")")
-        infoArray.append("Current location: \(charStruct?.currenlocation ?? "-")")
+    private func setupData() {
+        infoArray.append("Name: \(character?.name ?? "-")")
+        infoArray.append("Status: \(character?.status.rawValue ?? "-")")
+        infoArray.append("Species: \(character?.species.rawValue ?? "-")")
+        infoArray.append("Type: \(character?.type ?? "-")")
+        infoArray.append("Gender: \(character?.gender.rawValue ?? "-")")
+        infoArray.append("Origin place: \(character?.origin.name ?? "-")")
+        infoArray.append("Current location: \(character?.location.name ?? "-")")
         
-        var image = UIImage()
-        do {
-            if let url = URL(string: charStruct!.imageOfCh) {
-                let data = try Data(contentsOf: url)
-                image = UIImage(data: data)!
-                self.imageView = UIImageView(image: image)
-                self.createImage()
-            }
-            else {
-                imageView.backgroundColor = .systemGray
-            }
-        } catch {
-            print(error)
+        if let character = character,
+           let url = URL(string: character.image)
+        {
+            imageView.loadImage(from: url)
         }
     }
     
     private func createImage() {
-        view.addSubview(imageView)
+        myScrollView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 90).isActive = true
         imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70).isActive = true
@@ -71,7 +63,7 @@ final class DetailViewController: UIViewController {
     
     private func setupLabel() {
         myScrollView.addSubview(nameLabel)
-        nameLabel.text = "\(characterNameTitle)"
+        nameLabel.text = "\(character?.name ?? "-")"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
         nameLabel.textAlignment = .natural
         nameLabel.numberOfLines = 0
@@ -85,6 +77,7 @@ final class DetailViewController: UIViewController {
         nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -750).isActive = true
     }
     
     private func setStackViewConstrains() {

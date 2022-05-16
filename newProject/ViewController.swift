@@ -13,13 +13,13 @@ final class ViewController: UIViewController {
     private let nerworkCharacterManager = NetworkManager()
     private var response: SearchResponse? = nil
     private let searchController = UISearchController()
-    var character: CharacterData? = nil
+    var characterList = [CharacterData]()
     
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 100
+        table.estimatedRowHeight = 60
         return table
     }()
     
@@ -76,33 +76,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+    
+        let character = response?.results[indexPath.row]
+        cell.set(character: character!)
         
-        character = response?.results[indexPath.row]
-        var image = UIImage()
-        
-        do {
-            if let url = URL(string: character!.image) {
-                let data = try Data(contentsOf: url)
-                image = UIImage(data: data)!
-            }
-            else {
-                cell.imageView?.backgroundColor = .systemGray
-            }
-        } catch {
-            print(error)
-        }
-        cell.set(character: character!, image: image)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = tableView.indexPathForSelectedRow {
+            let characterObj = response?.results[indexPath.row]
             let characterVC = DetailViewController()
             characterVC.modalPresentationStyle = .fullScreen
-            let charactObj = response?.results[indexPath.row]
-            guard let character = charactObj else { return }
-//            characterVC.characterNameTitle = character!.name
-            characterVC.characterInformation(character: character)
+            characterVC.character = characterObj
             self.navigationController?.pushViewController(characterVC, animated: true)
         }
     }
