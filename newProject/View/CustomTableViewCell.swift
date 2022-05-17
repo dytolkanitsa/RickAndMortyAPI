@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomTableViewCell: UITableViewCell {
 
-    var safeArea: UILayoutGuide!
+    private var safeArea: UILayoutGuide!
     private let characterImageView = CustomImageView()
     private let characterNameLabel = UILabel()
     

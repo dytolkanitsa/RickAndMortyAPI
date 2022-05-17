@@ -23,7 +23,6 @@ final class DetailViewController: UIViewController {
         setupLabel()
         setupStack()
         setupData()
-        createImage()
         makeLabelArray()
     }
     
@@ -40,6 +39,7 @@ final class DetailViewController: UIViewController {
            let url = URL(string: character.image)
         {
             imageView.loadImage(from: url)
+            createImage()
         }
     }
     
@@ -58,7 +58,7 @@ final class DetailViewController: UIViewController {
     private func setupScroll() {
         myScrollView = UIScrollView(frame: self.view.bounds)
         view.addSubview(myScrollView)
-        myScrollView.backgroundColor = .systemGreen
+        myScrollView.backgroundColor = .systemMint
     }
     
     private func setupLabel() {
@@ -70,6 +70,17 @@ final class DetailViewController: UIViewController {
         nameLabel.adjustsFontSizeToFitWidth = true
         
         setLabelConstrains()
+    }
+    
+    private func setupStack(){
+        myScrollView.addSubview(myStackView)
+        myStackView.axis = .vertical
+        myStackView.distribution = .fillEqually
+        myStackView.alignment = .fill
+        myStackView.spacing = 10
+        myStackView.backgroundColor = .systemYellow
+        
+        setStackViewConstrains()
     }
     
     private func setLabelConstrains() {
@@ -98,20 +109,10 @@ final class DetailViewController: UIViewController {
         return label
     }
     
-    private func setupStack(){
-        myStackView.axis = .vertical
-        myStackView.distribution = .fillEqually
-        myStackView.alignment = .fill
-        myStackView.spacing = 10
-        myStackView.backgroundColor = .systemYellow
-        view.addSubview(myStackView)
-        setStackViewConstrains()
-    }
-    
     private func makeLabelArray() {
         var labelArray = [UILabel]()
         for labelValue in infoArray {
-            labelArray += [createLabel(withColor: .systemGray, title: labelValue)]
+            labelArray += [createLabel(withColor: .systemCyan, title: labelValue)]
         }
         
         myStackView = UIStackView(arrangedSubviews: labelArray)

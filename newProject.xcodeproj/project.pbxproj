@@ -49,25 +49,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		11A286BC282513D900136A3A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D66AAA4E28195F2900D12BEA /* ViewController.swift */,
-				11184BC2281BEBFC00DCE906 /* DetailViewController.swift */,
-				D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */,
-				112B78272832921C0061BE1A /* CustomImageView.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		11A286BD282513F800136A3A /* CharacterData */ = {
-			isa = PBXGroup;
-			children = (
-				114948C5281A6B4500C42072 /* CharacterData.swift */,
-			);
-			name = CharacterData;
-			sourceTree = "<group>";
-		};
 		D66AAA3E28195F2900D12BEA = {
 			isa = PBXGroup;
 			children = (
@@ -87,14 +68,33 @@
 		D66AAA4928195F2900D12BEA /* newProject */ = {
 			isa = PBXGroup;
 			children = (
-				11A286BD282513F800136A3A /* CharacterData */,
-				11A286BC282513D900136A3A /* View */,
+				D6F4B9992833A58900019052 /* CharacterData */,
+				D6F4B9982833A56D00019052 /* View */,
 				D66AAA4A28195F2900D12BEA /* AppDelegate.swift */,
 				D66AAA5328195F2B00D12BEA /* Assets.xcassets */,
 				D66AAA5828195F2B00D12BEA /* Info.plist */,
 				114948CD281AF06A00C42072 /* Network */,
 			);
 			path = newProject;
+			sourceTree = "<group>";
+		};
+		D6F4B9982833A56D00019052 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D66AAA4E28195F2900D12BEA /* ViewController.swift */,
+				11184BC2281BEBFC00DCE906 /* DetailViewController.swift */,
+				112B78272832921C0061BE1A /* CustomImageView.swift */,
+				D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D6F4B9992833A58900019052 /* CharacterData */ = {
+			isa = PBXGroup;
+			children = (
+				114948C5281A6B4500C42072 /* CharacterData.swift */,
+			);
+			name = CharacterData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

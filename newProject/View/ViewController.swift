@@ -10,27 +10,23 @@ import Foundation
 
 final class ViewController: UIViewController {
     
-    private let nerworkCharacterManager = NetworkManager()
-    private var response: SearchResponse? = nil
     private let searchController = UISearchController()
-    var characterList = [CharacterData]()
+    private var response: SearchResponse? = nil
     
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
-        table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 60
-        return table
-    }()
+    private let tableView = UITableView()
     
     override func viewDidLoad() {
-        // always add UIView before setting constraints
         super.viewDidLoad()
         view.addSubview(tableView)
         
         setupTableView()
         setupSearchBar()
         
+        fetchData()
+    }
+    
+    private func fetchData() {
+        let nerworkCharacterManager = NetworkManager()
         let urlString = "https://rickandmortyapi.com/api/character"
         nerworkCharacterManager.fetchRMCharacters(urlString: urlString) { [weak self] (result) in
             switch result {
@@ -46,7 +42,15 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - Setup View and SearchBar
-    private func setupTableView(){
+    private func setupTableView() {
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+        
+        setupTableViewConstraints()
+    }
+    
+    private func setupTableViewConstraints(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -76,7 +80,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-    
         let character = response?.results[indexPath.row]
         cell.set(character: character!)
         

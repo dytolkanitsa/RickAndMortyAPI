@@ -7,14 +7,14 @@
 
 import UIKit
 
-let imageCache = NSCache<AnyObject, AnyObject>()
-
 final class CustomImageView: UIImageView {
-    var task: URLSessionDataTask!
+    
+    private var imageCache = NSCache<AnyObject, AnyObject>()
+    private var task: URLSessionDataTask!
     
     func loadImage(from url: URL) {
-        image = nil
         
+        image = nil
         if let task = task {
             task.cancel()
         }
@@ -25,13 +25,9 @@ final class CustomImageView: UIImageView {
         }
         
         task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
             guard let data = data,
-                  let newImage = UIImage(data: data) else {
-                print("couldnt load image from url")
-                return
-            }
-            imageCache.setObject(newImage, forKey: url.absoluteString as AnyObject)
+                  let newImage = UIImage(data: data) else { return }
+            self.imageCache.setObject(newImage, forKey: url.absoluteString as AnyObject)
             DispatchQueue.main.async {
                 self.image = newImage
             }
