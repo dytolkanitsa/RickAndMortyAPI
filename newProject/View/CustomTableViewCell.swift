@@ -9,14 +9,14 @@ import UIKit
 
 final class CustomTableViewCell: UITableViewCell {
 
-    private var safeArea: UILayoutGuide!
+    private var cellStack = UIStackView()
     private let characterImageView = CustomImageView()
     private let characterNameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        safeArea = layoutMarginsGuide
+        setupStack()
         configureImageView()
         configureNameLabel()
     }
@@ -25,44 +25,49 @@ final class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupStack() {
+        addSubview(cellStack)
+        cellStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cellStack.topAnchor.constraint(equalTo: topAnchor),
+            cellStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cellStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cellStack.bottomAnchor.constraint(equalTo: bottomAnchor)])
+        
+        cellStack.axis = .horizontal
+        cellStack.distribution = .fill
+        cellStack.alignment = .fill
+        cellStack.spacing = 10
+        cellStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        cellStack.isLayoutMarginsRelativeArrangement = true
+        cellStack.backgroundColor = .black
+        cellStack.addArrangedSubview(characterImageView)
+        cellStack.addArrangedSubview(characterNameLabel)
+    }
+    
     func set(character: CharacterData){
         if let url = URL(string: character.image) {
             characterImageView.loadImage(from: url)
         }
-        characterNameLabel.text = character.name
+        characterNameLabel.font = UIFont(name: "GetSchwifty-Regular", size: 20)
+        characterNameLabel.textColor = UIColor(red: 90/255, green: 193/255, blue: 184/255, alpha: 1)
+        characterNameLabel.text = NSLocalizedString(character.name, comment: "")
     }
     
     // MARK: - Configuration
     private func configureImageView() {
-        characterImageView.layer.cornerRadius = 10
+        characterImageView.layer.cornerRadius = 25
+        characterImageView.layer.borderWidth = 3
+        characterImageView.layer.borderColor = (UIColor(red: 90/255, green: 193/255, blue: 184/255, alpha: 1)).cgColor
         characterImageView.clipsToBounds = true
-        
-        setImageView()
+        characterImageView.translatesAutoresizingMaskIntoConstraints = false
+        characterImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        characterImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     private func configureNameLabel() {
-        characterNameLabel.numberOfLines = 0
-        characterNameLabel.adjustsFontSizeToFitWidth = true
-        
-        setNameLabel()
-    }
-    
-    // MARK: - Setup
-    private func setImageView() {
-        addSubview(characterImageView)
-        characterImageView.translatesAutoresizingMaskIntoConstraints = false
-        characterImageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
-        characterImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        characterImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        characterImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    }
-    
-    private func setNameLabel() {
-        addSubview(characterNameLabel)
+//        characterNameLabel.numberOfLines = 0
+//        characterNameLabel.adjustsFontSizeToFitWidth = true
         characterNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        characterNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        characterNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20).isActive = true
-        characterNameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        characterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
     }
 }

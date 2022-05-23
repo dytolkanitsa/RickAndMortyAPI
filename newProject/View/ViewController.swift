@@ -8,22 +8,73 @@
 import UIKit
 import Foundation
 
-final class ViewController: UIViewController {
+// архитектура mvc mvp solid
+// ui: safe ared layout marg traid coll , stack ui tutorial
+// шрифты рик и морти (цвета) +
+// статус неизвестно/жив/мертв микрокартинки
+// аудио(?)
+// локализация +
+// еще один контроллер /системные преколы рандомный персонаж по кнопке
+// force unwrap
+
+// кое-где выходит за пределы лэйбла (аврадольв линкер)
+
+class TabBarController: UITabBarController {
     
-    private let searchController = UISearchController()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tableViewVC = TableViewController()
+        let randomChVC = RandomCharacterVC()
+        _ = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBold", size: 10)]
+        
+        tableViewVC.title = NSLocalizedString("[Characters]", comment: "")
+        randomChVC.title = NSLocalizedString("[Random character]", comment: "")
+        self.setViewControllers([tableViewVC, randomChVC], animated: false)
+//        self.tabBar.backgroundColor = UIColor(red: 90/255, green: 193/255, blue: 184/255, alpha: 1)
+        guard let items = self.tabBar.items else {return}
+        
+        let images = ["rick", "morty"]
+        
+        for x in 0..<items.count {
+            items[x].image = UIImage(named: images[x])?.withRenderingMode(.alwaysOriginal)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navigationBar = self.navigationController?.navigationBar
+        navigationItem.title = NSLocalizedString("[Characters]", comment: "")
+        _ = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBold", size: 10)]
+        navigationBar?.backgroundColor = .black
+        navigationBar?.barStyle = UIBarStyle.black
+        navigationBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+    }
+}
+
+
+final class TableViewController: UIViewController {
+    
     private var response: SearchResponse? = nil
-    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        
+        view.backgroundColor = .black
+        tableView.separatorColor = UIColor(red: 190/255, green: 215/255, blue: 177/255, alpha: 1)
         setupTableView()
-        setupSearchBar()
-        
         fetchData()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.backgroundColor = .black
+        navigationBar?.barStyle = UIBarStyle.black
+        navigationBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+    }
+
     
     private func fetchData() {
         let nerworkCharacterManager = NetworkManager()
@@ -46,10 +97,10 @@ final class ViewController: UIViewController {
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        
+        tableView.backgroundColor = .black
         setupTableViewConstraints()
     }
-    
+
     private func setupTableViewConstraints(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -59,29 +110,24 @@ final class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        title = "Characters"
-    }
-    
-    private func setupSearchBar() {
-        navigationItem.searchController = searchController
-        searchController.searchBar.delegate = self
-        navigationController?.navigationBar.prefersLargeTitles = true
-        searchController.obscuresBackgroundDuringPresentation = false
+//        title = NSLocalizedString("Characters", comment: "")
     }
 }
 
     // MARK: - UITableViewDataSource
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return response?.results.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         let character = response?.results[indexPath.row]
         cell.set(character: character!)
+        // чтобы сепаратор не пропадал при выборе
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }
@@ -94,12 +140,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             characterVC.character = characterObj
             self.navigationController?.pushViewController(characterVC, animated: true)
         }
-    }
-}
-
-    // MARK: - UISearchBarDelegate
-extension ViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
     }
 }

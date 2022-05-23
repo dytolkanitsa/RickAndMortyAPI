@@ -1,0 +1,69 @@
+/* 
+  Localizable.strings
+  newProject
+
+  Created by Толканица Дарья on 19.05.2022.
+  
+*/
+
+// names
+"Rick Sanchez" = "Rick Sanchez";
+"Morty Smith" = "Morty Smith";
+"Summer Smith" = "Summer Smith";
+"Beth Smith" = "Beth Smith";
+"Jerry Smith" = "Jerry Smith";
+"Abadango Cluster Princess" = "Abadango Cluster Princess";
+"Abradolf Lincler" = "Abradolf Lincler";
+"Adjudicator Rick" = "Adjudicator Rick";
+"Agency Director" = "Agency Director";
+"Alan Rails" = "Alan Rails";
+"Albert Einstein" = "Albert Einstein";
+"Alexander" = "Alexander";
+"Alien Googah" = "Alien Googah";
+"Alien Morty" = "Alien Morty";
+"Alien Rick" = "Alien Rick";
+"Amish Cyborg" = "Amish Cyborg";
+"Annie" = "Annie";
+"Antenna Morty" = "Antenna Morty";
+"Antenna Rick" = "Antenna Rick";
+"Ants in my Eyes Johnson" = "Ants in my Eyes Johnson";
+
+"Name: " = "Name: ";
+"Status: " = "Status: ";
+"Type: " = "Type: ";
+"Species: " = "Species: ";
+"Gender: " = "Gender: ";
+"Origin place: " = "Origin place: ";
+"Current location: " = "Current location: ";
+
+// status
+"Alive" = "Alive";
+"Dead" = "Dead";
+// type
+"Human" = "Human";
+"Alien" = "Alien";
+"Genetic experiment" = "Genetic experiment";
+"Superhuman (Ghost trains summoner)" = "Superhuman (Ghost trains summoner)";
+"Parasite" = "Parasite";
+// species
+"Human with antennae" = "Human with antennae";
+"Human with ants in his eyes" = "Human with ants in his eyes";
+// gender
+"Male" = "Male";
+"Female" = "Female";
+"unknown" = "unknown";
+//original/current location
+"Citadel of Ricks" = "Citadel of Ricks";
+"Earth (Replacement Dimension)" = "Earth (Replacement Dimension)";
+"Abadango" = "Abadango";
+"Testicle Monster Dimension" = "Testicle Monster Dimension";
+"Worldender's lair" = "Worldender's lair";
+"Earth (C-137)" = "Earth (C-137)";
+"Anatomy Park" = "Anatomy Park";
+"Interdimensional Cable" = "Interdimensional Cable";
+
+// other
+"Characters" = "Characters";
+"[Characters]" = "[Characters]";
+"[Information]" = "[Information]";
+"[Random character]" = "[Random character]";

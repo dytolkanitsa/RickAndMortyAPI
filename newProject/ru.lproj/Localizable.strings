@@ -1,0 +1,69 @@
+/* 
+  Localizable.strings
+  newProject
+
+  Created by Толканица Дарья on 19.05.2022.
+  
+*/
+
+// names
+"Rick Sanchez" = "Рик Санчез";
+"Morty Smith" = "Морти Смит";
+"Summer Smith" = "Саммер Смит";
+"Beth Smith" = "Бет Смит";
+"Jerry Smith" = "Джерри Смит";
+"Abadango Cluster Princess" = "Кластерная принцесса Абаданго";
+"Abradolf Lincler" = "Аврадольф Линклер";
+"Adjudicator Rick" = "Судья Рик";
+"Agency Director" = "Директор Агенства";
+"Alan Rails" = "Алан Райлс";
+"Albert Einstein" = "Альберт Эйнштейн";
+"Alexander" = "Александр";
+"Alien Googah" = "Пришелец Гуга";
+"Alien Morty" = "Пришелец Морти";
+"Alien Rick" = "Пришелец Рик";
+"Amish Cyborg" = "Амиш Киборг";
+"Annie" = "Энни";
+"Antenna Morty" = "Антена Морти";
+"Antenna Rick" = "Антена Рик";
+"Ants in my Eyes Johnson" = "Муравьи в моих глазах Джонсон";
+
+"Name: " = "Имя: ";
+"Status: " = "Статус: ";
+"Type: " = "Тип: ";
+"Species: " = "Вид: ";
+"Gender: " = "Гендер: ";
+"Origin place: " = "Место рождения: ";
+"Current location: " = "Текущее местоположение: ";
+
+// status
+"Alive" = "Жив";
+"Dead" = "Мертв";
+// type
+"Human" = "Человек";
+"Alien" = "Пришелец";
+"Genetic experiment" = "Генетический эксперимент";
+"Superhuman (Ghost trains summoner)" = "Суперчеловек";
+"Parasite" = "Паразит";
+// species
+"Human with antennae" = "Человек с антеннами";
+"Human with ants in his eyes" = "Человек с муравьями в глазах";
+// gender
+"Male" = "Мужина";
+"Female" = "Женщина";
+"unknown" = "Неизвестно";
+//original/current location
+"Citadel of Ricks" = "Цитадель Риков";
+"Earth (Replacement Dimension)" = "Земля (Измерение подмены)";
+"Abadango" = "Абаданго";
+"Testicle Monster Dimension" = "Измерение яичного монстра";
+"Worldender's lair" = "Логово Энедера";
+"Earth (C-137)" = "Земля (Измерение С-137)";
+"Anatomy Park" = "Анатомический парк";
+"Interdimensional Cable" = "Межпространственный кабель";
+
+// other
+"Characters" = "Персонажи";
+"[Characters]" = "[Персонажи]";
+"[Information]" = "[Информация]";
+"[Random character]" = "[Рандомный персонаж]";

@@ -8,114 +8,156 @@
 import UIKit
 
 final class DetailViewController: UIViewController {
-   
+
     private var myScrollView = UIScrollView()
     private var myStackView = UIStackView()
-    private let nameLabel = UILabel()
+    private var imageView = CustomImageView()
+    private var nameLabel = UILabel()
     private var infoArray = [String]()
-    private let imageView = CustomImageView()
     var character: CharacterData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        view.backgroundColor = UIColor(red: 190/255, green: 215/255, blue: 177/255, alpha: 1)
+        self.navigationItem.title = NSLocalizedString("[Information]", comment: "")
+        _ = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBold", size: 10)]
         setupScroll()
-        setupLabel()
         setupStack()
+        setupImage()
+        setupNameLabel()
         setupData()
-        makeLabelArray()
+        putLabelsInStack()
     }
-    
-    private func setupData() {
-        infoArray.append("Name: \(character?.name ?? "-")")
-        infoArray.append("Status: \(character?.status.rawValue ?? "-")")
-        infoArray.append("Species: \(character?.species.rawValue ?? "-")")
-        infoArray.append("Type: \(character?.type ?? "-")")
-        infoArray.append("Gender: \(character?.gender.rawValue ?? "-")")
-        infoArray.append("Origin place: \(character?.origin.name ?? "-")")
-        infoArray.append("Current location: \(character?.location.name ?? "-")")
-        
-        if let character = character,
-           let url = URL(string: character.image)
-        {
-            imageView.loadImage(from: url)
-            createImage()
-        }
-    }
-    
-    private func createImage() {
-        myScrollView.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 90).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: myStackView.topAnchor, constant: -50).isActive = true
-        imageView.backgroundColor = .gray
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 10
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.barStyle = UIBarStyle.default
+        navigationBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        navigationBar?.backgroundColor = UIColor(red: 190/255, green: 215/255, blue: 177/255, alpha: 1)
     }
     
     private func setupScroll() {
-        myScrollView = UIScrollView(frame: self.view.bounds)
         view.addSubview(myScrollView)
+        myScrollView.translatesAutoresizingMaskIntoConstraints = false
         myScrollView.backgroundColor = .systemMint
-    }
-    
-    private func setupLabel() {
-        myScrollView.addSubview(nameLabel)
-        nameLabel.text = "\(character?.name ?? "-")"
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        nameLabel.textAlignment = .natural
-        nameLabel.numberOfLines = 0
-        nameLabel.adjustsFontSizeToFitWidth = true
         
-        setLabelConstrains()
+        NSLayoutConstraint.activate([
+            myScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            myScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            myScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            myScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     
-    private func setupStack(){
-        myScrollView.addSubview(myStackView)
+    private func setupStack() {
+        view.addSubview(myStackView)
+        myStackView.translatesAutoresizingMaskIntoConstraints = false
+        myStackView.backgroundColor = UIColor(red: 55/255, green: 48/255, blue: 39/255, alpha: 1)
+
+        NSLayoutConstraint.activate([
+            myStackView.topAnchor.constraint(equalTo: myScrollView.topAnchor),
+            myStackView.leadingAnchor.constraint(equalTo: myScrollView.leadingAnchor),
+            myStackView.trailingAnchor.constraint(equalTo: myScrollView.trailingAnchor),
+            myStackView.bottomAnchor.constraint(equalTo: myScrollView.bottomAnchor)])
+        
         myStackView.axis = .vertical
-        myStackView.distribution = .fillEqually
+        myStackView.distribution = .fill
         myStackView.alignment = .fill
         myStackView.spacing = 10
-        myStackView.backgroundColor = .systemYellow
+        myStackView.layoutMargins = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        myStackView.isLayoutMarginsRelativeArrangement = true
+    }
+    
+    private func setupImage() {
+        imageView.backgroundColor = .gray
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+//        imageView.backgroundColor = UIColor(red: 55/255, green: 48/255, blue: 39/255, alpha: 1)
+        imageView.backgroundColor = .systemMint
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
         
-        setStackViewConstrains()
     }
     
-    private func setLabelConstrains() {
+    private func setupNameLabel() {
+        nameLabel.backgroundColor = UIColor(red: 55/255, green: 48/255, blue: 39/255, alpha: 1)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -750).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        nameLabel.font = UIFont(name: "GetSchwifty-Regular", size: 35)
+        nameLabel.textColor = UIColor(red: 90/255, green: 193/255, blue: 184/255, alpha: 1)
+        nameLabel.text = NSLocalizedString(character!.name, comment: "")
+        nameLabel.textAlignment = .center
     }
     
-    private func setStackViewConstrains() {
-        myStackView.translatesAutoresizingMaskIntoConstraints = false
-        myStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 340).isActive = true
-        myStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        myStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        myStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60).isActive = true
+    private func setupData() {
+        
+        infoArray.append(NSLocalizedString("Name: ", comment: "") + NSLocalizedString(character!.name, comment: ""))
+        infoArray.append(NSLocalizedString("Status: ", comment: "") + NSLocalizedString(character!.status.rawValue, comment: ""))
+        infoArray.append(NSLocalizedString("Type: ", comment: "") + NSLocalizedString(character!.species.rawValue, comment: ""))
+        infoArray.append(NSLocalizedString("Species: ", comment: "") + NSLocalizedString(character!.type, comment: ""))
+        infoArray.append(NSLocalizedString("Gender: ", comment: "") + NSLocalizedString(character!.gender.rawValue, comment: ""))
+        infoArray.append(NSLocalizedString("Origin place: ", comment: "") + NSLocalizedString(character!.origin.name, comment: ""))
+        infoArray.append(NSLocalizedString("Current location: ", comment: "") + NSLocalizedString(character!.location.name, comment: ""))
+        
+        if let character = character,
+            let url = URL(string: character.image) {
+            imageView.loadImage(from: url)
+        }
     }
     
     private func createLabel(withColor color: UIColor, title: String) -> UILabel {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        label.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         label.backgroundColor = color
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 10
         label.text = " \(title)"
         label.textColor = .white
+//        label.addImageWith(name: "мужчина", behindText: false)
         return label
     }
     
-    private func makeLabelArray() {
-        var labelArray = [UILabel]()
+    private func putLabelsInStack() {
+        myStackView.addArrangedSubview(nameLabel)
+        myStackView.addArrangedSubview(imageView)
+        imageView.contentMode = .scaleAspectFit
         for labelValue in infoArray {
-            labelArray += [createLabel(withColor: .systemCyan, title: labelValue)]
+            myStackView.addArrangedSubview(createLabel(withColor: UIColor(red: 63/255, green: 128/255, blue: 136/255, alpha: 1), title: labelValue))
         }
-        
-        myStackView = UIStackView(arrangedSubviews: labelArray)
-        setupStack()
     }
 }
+
+//extension UILabel {
+//
+//    func addImageWith(name: String, behindText: Bool) {
+//
+//        let attachment = NSTextAttachment()
+//        attachment.image = UIImage(named: name)
+//        let attachmentString = NSAttributedString(attachment: attachment)
+//
+//        guard let txt = self.text else {
+//            return
+//        }
+//
+//        if behindText {
+//            let strLabelText = NSMutableAttributedString(string: txt)
+//            strLabelText.append(attachmentString)
+//            self.attributedText = strLabelText
+//        } else {
+//            let strLabelText = NSAttributedString(string: txt)
+//            let mutableAttachmentString = NSMutableAttributedString(attributedString: attachmentString)
+//            mutableAttachmentString.append(strLabelText)
+//            self.attributedText = mutableAttachmentString
+//        }
+//    }
+//
+//    func removeImage() {
+//        let text = self.text
+//        self.attributedText = nil
+//        self.text = text
+//    }
+//}

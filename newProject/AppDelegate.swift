@@ -13,10 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         
-        let mainViewController = ViewController()
+        let mainViewController = TabBarController()
         let navigationController = UINavigationController.init(rootViewController: mainViewController)
+    
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -27,4 +27,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
