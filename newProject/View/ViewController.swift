@@ -17,8 +17,6 @@ import Foundation
 // еще один контроллер /системные преколы рандомный персонаж по кнопке
 // force unwrap
 
-// кое-где выходит за пределы лэйбла (аврадольв линкер)
-
 class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
@@ -30,15 +28,17 @@ class TabBarController: UITabBarController {
         
         tableViewVC.title = NSLocalizedString("[Characters]", comment: "")
         randomChVC.title = NSLocalizedString("[Random character]", comment: "")
-        self.setViewControllers([tableViewVC, randomChVC], animated: false)
-//        self.tabBar.backgroundColor = UIColor(red: 90/255, green: 193/255, blue: 184/255, alpha: 1)
-        guard let items = self.tabBar.items else {return}
         
+        self.setViewControllers([tableViewVC, randomChVC], animated: false)
+        
+        guard let items = self.tabBar.items else {return}
         let images = ["rick", "morty"]
         
         for x in 0..<items.count {
             items[x].image = UIImage(named: images[x])?.withRenderingMode(.alwaysOriginal)
         }
+        
+        UITabBar.appearance().barTintColor = UIColor.black
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +92,6 @@ final class TableViewController: UIViewController {
         }
     }
     
-    // MARK: - Setup View and SearchBar
     private func setupTableView() {
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = UITableView.automaticDimension
@@ -100,7 +99,7 @@ final class TableViewController: UIViewController {
         tableView.backgroundColor = .black
         setupTableViewConstraints()
     }
-
+    
     private func setupTableViewConstraints(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -110,11 +109,9 @@ final class TableViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-//        title = NSLocalizedString("Characters", comment: "")
     }
 }
 
-    // MARK: - UITableViewDataSource
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,8 +121,9 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        let character = response?.results[indexPath.row]
-        cell.set(character: character!)
+        let characterObj = response?.results[indexPath.row]
+        guard let character = characterObj else { return cell }
+        cell.set(character: character)
         // чтобы сепаратор не пропадал при выборе
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         

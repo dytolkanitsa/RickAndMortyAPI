@@ -51,14 +51,14 @@ final class DetailViewController: UIViewController {
     }
     
     private func setupStack() {
-        view.addSubview(myStackView)
+        myScrollView.addSubview(myStackView)
         myStackView.translatesAutoresizingMaskIntoConstraints = false
         myStackView.backgroundColor = UIColor(red: 55/255, green: 48/255, blue: 39/255, alpha: 1)
 
         NSLayoutConstraint.activate([
             myStackView.topAnchor.constraint(equalTo: myScrollView.topAnchor),
-            myStackView.leadingAnchor.constraint(equalTo: myScrollView.leadingAnchor),
-            myStackView.trailingAnchor.constraint(equalTo: myScrollView.trailingAnchor),
+            myStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            myStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             myStackView.bottomAnchor.constraint(equalTo: myScrollView.bottomAnchor)])
         
         myStackView.axis = .vertical
@@ -87,22 +87,26 @@ final class DetailViewController: UIViewController {
         nameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         nameLabel.font = UIFont(name: "GetSchwifty-Regular", size: 35)
         nameLabel.textColor = UIColor(red: 90/255, green: 193/255, blue: 184/255, alpha: 1)
-        nameLabel.text = NSLocalizedString(character!.name, comment: "")
+        guard let character = character else {
+            return
+        }
+        nameLabel.text = NSLocalizedString(character.name, comment: "")
         nameLabel.textAlignment = .center
     }
     
     private func setupData() {
+        guard let character = character else {
+            return
+        }
+        infoArray.append(NSLocalizedString("Name: ", comment: "") + NSLocalizedString(character.name, comment: ""))
+        infoArray.append(NSLocalizedString("Status: ", comment: "") + NSLocalizedString(character.status.rawValue, comment: ""))
+        infoArray.append(NSLocalizedString("Type: ", comment: "") + NSLocalizedString(character.species.rawValue, comment: ""))
+        infoArray.append(NSLocalizedString("Species: ", comment: "") + NSLocalizedString(character.type, comment: ""))
+        infoArray.append(NSLocalizedString("Gender: ", comment: "") + NSLocalizedString(character.gender.rawValue, comment: ""))
+        infoArray.append(NSLocalizedString("Origin place: ", comment: "") + NSLocalizedString(character.origin.name, comment: ""))
+        infoArray.append(NSLocalizedString("Current location: ", comment: "") + NSLocalizedString(character.location.name, comment: ""))
         
-        infoArray.append(NSLocalizedString("Name: ", comment: "") + NSLocalizedString(character!.name, comment: ""))
-        infoArray.append(NSLocalizedString("Status: ", comment: "") + NSLocalizedString(character!.status.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Type: ", comment: "") + NSLocalizedString(character!.species.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Species: ", comment: "") + NSLocalizedString(character!.type, comment: ""))
-        infoArray.append(NSLocalizedString("Gender: ", comment: "") + NSLocalizedString(character!.gender.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Origin place: ", comment: "") + NSLocalizedString(character!.origin.name, comment: ""))
-        infoArray.append(NSLocalizedString("Current location: ", comment: "") + NSLocalizedString(character!.location.name, comment: ""))
-        
-        if let character = character,
-            let url = URL(string: character.image) {
+        if let url = URL(string: character.image) {
             imageView.loadImage(from: url)
         }
     }

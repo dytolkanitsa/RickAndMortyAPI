@@ -54,7 +54,6 @@ final class CustomTableViewCell: UITableViewCell {
         characterNameLabel.text = NSLocalizedString(character.name, comment: "")
     }
     
-    // MARK: - Configuration
     private func configureImageView() {
         characterImageView.layer.cornerRadius = 25
         characterImageView.layer.borderWidth = 3

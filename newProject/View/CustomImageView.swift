@@ -7,9 +7,6 @@
 
 import UIKit
 
-// посмотреть еще
-// кэш в словаре(?)
-
 var imageCache = NSCache<AnyObject, AnyObject>()
 
 final class CustomImageView: UIImageView {
@@ -22,7 +19,7 @@ final class CustomImageView: UIImageView {
         if let task = task {
             task.cancel()
         }
-        // сохранили UIImage, а метод возвращает ObjectType, поэтому делаем каст в UIImage
+        
         if let imageFromCache = imageCache.object(forKey: url.absoluteString as AnyObject) as? UIImage {
             self.image = imageFromCache
             return
