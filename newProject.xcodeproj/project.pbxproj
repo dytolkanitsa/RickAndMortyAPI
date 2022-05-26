@@ -14,7 +14,11 @@
 		D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */; };
 		D657C6D028368136001EFA16 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D657C6D228368136001EFA16 /* Localizable.strings */; };
 		D657C6D628378344001EFA16 /* RaM-font-en.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D657C6D528378344001EFA16 /* RaM-font-en.ttf */; };
-		D657C6DB283BB6D0001EFA16 /* RandomCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6DA283BB6D0001EFA16 /* RandomCharacter.swift */; };
+		D657C6DB283BB6D0001EFA16 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6DA283BB6D0001EFA16 /* SecondView.swift */; };
+		D657C700283E548A001EFA16 /* Resouces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6FF283E548A001EFA16 /* Resouces.swift */; };
+		D657C702283E670D001EFA16 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C701283E670D001EFA16 /* TabBarController.swift */; };
+		D657C704283E7DBB001EFA16 /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C703283E7DBB001EFA16 /* GalleryCollectionView.swift */; };
+		D657C706283E8223001EFA16 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C705283E8223001EFA16 /* GalleryCollectionViewCell.swift */; };
 		D66AAA4B28195F2900D12BEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AAA4A28195F2900D12BEA /* AppDelegate.swift */; };
 		D66AAA4F28195F2900D12BEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AAA4E28195F2900D12BEA /* ViewController.swift */; };
 		D66AAA5428195F2B00D12BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66AAA5328195F2B00D12BEA /* Assets.xcassets */; };
@@ -29,7 +33,11 @@
 		D657C6D128368136001EFA16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D657C6D32836814F001EFA16 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D657C6D528378344001EFA16 /* RaM-font-en.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RaM-font-en.ttf"; path = "newProject/RaM-font-en.ttf"; sourceTree = SOURCE_ROOT; };
-		D657C6DA283BB6D0001EFA16 /* RandomCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCharacter.swift; sourceTree = "<group>"; };
+		D657C6DA283BB6D0001EFA16 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
+		D657C6FF283E548A001EFA16 /* Resouces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resouces.swift; sourceTree = "<group>"; };
+		D657C701283E670D001EFA16 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D657C703283E7DBB001EFA16 /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
+		D657C705283E8223001EFA16 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D66AAA4728195F2900D12BEA /* newProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66AAA4A28195F2900D12BEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D66AAA4E28195F2900D12BEA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +72,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		D657C6FE283E543A001EFA16 /* Recources */ = {
+			isa = PBXGroup;
+			children = (
+				D657C6FF283E548A001EFA16 /* Resouces.swift */,
+			);
+			name = Recources;
+			sourceTree = "<group>";
+		};
 		D66AAA3E28195F2900D12BEA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +99,7 @@
 		D66AAA4928195F2900D12BEA /* newProject */ = {
 			isa = PBXGroup;
 			children = (
+				D657C6FE283E543A001EFA16 /* Recources */,
 				D657C6D9283BAEEF001EFA16 /* Fonts */,
 				D6F4B9992833A58900019052 /* CharacterData */,
 				D6F4B9982833A56D00019052 /* View */,
@@ -98,11 +115,14 @@
 		D6F4B9982833A56D00019052 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D657C703283E7DBB001EFA16 /* GalleryCollectionView.swift */,
+				D657C705283E8223001EFA16 /* GalleryCollectionViewCell.swift */,
 				D66AAA4E28195F2900D12BEA /* ViewController.swift */,
 				11184BC2281BEBFC00DCE906 /* DetailViewController.swift */,
 				112B78272832921C0061BE1A /* CustomImageView.swift */,
 				D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */,
-				D657C6DA283BB6D0001EFA16 /* RandomCharacter.swift */,
+				D657C6DA283BB6D0001EFA16 /* SecondView.swift */,
+				D657C701283E670D001EFA16 /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,12 +208,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				112EDE21281978BB00CA3559 /* NetworkManager.swift in Sources */,
+				D657C706283E8223001EFA16 /* GalleryCollectionViewCell.swift in Sources */,
 				112B78282832921C0061BE1A /* CustomImageView.swift in Sources */,
 				114948C6281A6B4500C42072 /* CharacterData.swift in Sources */,
+				D657C702283E670D001EFA16 /* TabBarController.swift in Sources */,
 				D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */,
+				D657C700283E548A001EFA16 /* Resouces.swift in Sources */,
 				D66AAA4F28195F2900D12BEA /* ViewController.swift in Sources */,
 				D66AAA4B28195F2900D12BEA /* AppDelegate.swift in Sources */,
-				D657C6DB283BB6D0001EFA16 /* RandomCharacter.swift in Sources */,
+				D657C6DB283BB6D0001EFA16 /* SecondView.swift in Sources */,
+				D657C704283E7DBB001EFA16 /* GalleryCollectionView.swift in Sources */,
 				11184BC3281BEBFC00DCE906 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

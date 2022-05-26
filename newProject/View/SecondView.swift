@@ -1,16 +1,13 @@
 //
-//  DetailViewController.swift
+//  RandomCharacter.swift
 //  newProject
 //
-//  Created by Дарья Толканица on 29.04.2022.
+//  Created by Толканица Дарья Юрьевна on 23.05.2022.
 //
 
 import UIKit
 
-final class DetailViewController: UIViewController {
-
-    private var infoArray = [String]()
-    var character: CharacterData?
+final class SecondView: UIViewController {
     
     private var detailScrollView: UIScrollView = {
         let detailScrollView = UIScrollView()
@@ -32,32 +29,52 @@ final class DetailViewController: UIViewController {
         return detailStackView
     }()
     
-    private var imageViewContainer: UIView = {
-        let imageViewContainer = UIView()
-        imageViewContainer.translatesAutoresizingMaskIntoConstraints = false
-        return imageViewContainer
-    }()
-    
-    private var imageView: CustomImageView = {
-        let imageView = CustomImageView()
-        imageView.backgroundColor = .gray
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 230).isActive = true
-        imageView.backgroundColor = .systemMint
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
-        return imageView
+    private var textFieldStack: UIStackView = {
+        let textFieldStack = UIStackView()
+        textFieldStack.translatesAutoresizingMaskIntoConstraints = false
+        textFieldStack.backgroundColor = .systemMint
+        textFieldStack.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        textFieldStack.axis = .vertical
+        textFieldStack.distribution = .fill
+        textFieldStack.alignment = .fill
+        textFieldStack.spacing = 15
+        textFieldStack.layoutMargins = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        textFieldStack.isLayoutMarginsRelativeArrangement = true
+        return textFieldStack
     }()
     
     private var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.backgroundColor = appColors.birch
+        nameLabel.backgroundColor = .systemYellow
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         nameLabel.font = appFonts.characterNameTitle
         nameLabel.textColor = appColors.fountainBlue
         nameLabel.textAlignment = .center
         return nameLabel
+    }()
+    
+    private var nameTextField: UITextField = {
+        let nameTextField = UITextField()
+        nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameTextField.backgroundColor = .systemPink
+        return nameTextField
+    }()
+    
+    private var commentTextField: UITextField = {
+        let commentTextField = UITextField()
+        commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        commentTextField.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        commentTextField.backgroundColor = .systemPink
+        return commentTextField
+    }()
+    
+    private var secondCollection: GalleryCollectionView = {
+        let secondCollection = GalleryCollectionView()
+        secondCollection.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        return secondCollection
     }()
     
     override func viewDidLoad() {
@@ -74,7 +91,7 @@ final class DetailViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = appColors.sprout
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        navigationItem.title = "[Information]"
+        navigationItem.title = "[Cats]"
     
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
@@ -84,10 +101,9 @@ final class DetailViewController: UIViewController {
     private func setup() {
         setupScrollConstraints()
         setupStackConstraints()
-        setupImageViewConstraints()
-        setupNameLabelText()
-        setupDataIntoArray()
+
         putLabelsInStack()
+        secondCollection.set(cells: Cats.fetchCats())
     }
     
     private func setupScrollConstraints() {
@@ -110,41 +126,8 @@ final class DetailViewController: UIViewController {
             detailStackView.bottomAnchor.constraint(equalTo: detailScrollView.bottomAnchor)])
 
     }
-    
-    private func setupImageViewConstraints() {
-        imageViewContainer.addSubview(imageView)
 
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: imageViewContainer.topAnchor),
-            imageView.centerXAnchor.constraint(equalTo: imageViewContainer.centerXAnchor),
-            imageView.bottomAnchor.constraint(equalTo: imageViewContainer.bottomAnchor)])
-    }
-
-    private func setupNameLabelText() {
-        guard let character = character else {
-            return
-        }
-        nameLabel.text = NSLocalizedString(character.name, comment: "")
-    }
-    
-    private func setupDataIntoArray() {
-        guard let character = character else {
-            return
-        }
-        infoArray.append(NSLocalizedString("Name: ", comment: "") + NSLocalizedString(character.name, comment: ""))
-        infoArray.append(NSLocalizedString("Status: ", comment: "") + NSLocalizedString(character.status.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Type: ", comment: "") + NSLocalizedString(character.species.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Species: ", comment: "") + NSLocalizedString(character.type, comment: ""))
-        infoArray.append(NSLocalizedString("Gender: ", comment: "") + NSLocalizedString(character.gender.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Origin place: ", comment: "") + NSLocalizedString(character.origin.name, comment: ""))
-        infoArray.append(NSLocalizedString("Current location: ", comment: "") + NSLocalizedString(character.location.name, comment: ""))
-        
-        if let url = URL(string: character.image) {
-            imageView.loadImage(from: url)
-        }
-    }
-    
-    private func createLabel(withColor color: UIColor, title: String) -> UILabel {
+    private func createLabel(withColor color: UIColor, title: Int) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.heightAnchor.constraint(equalToConstant: 55).isActive = true
@@ -161,10 +144,12 @@ final class DetailViewController: UIViewController {
     
     private func putLabelsInStack() {
         detailStackView.addArrangedSubview(nameLabel)
-        detailStackView.addArrangedSubview(imageViewContainer)
-        imageView.contentMode = .scaleAspectFill
-        for labelValue in infoArray {
-            detailStackView.addArrangedSubview(createLabel(withColor: appColors.ming, title: labelValue))
-        }
+        detailStackView.setCustomSpacing(30, after: nameLabel)
+        detailStackView.addArrangedSubview(secondCollection)
+        detailStackView.setCustomSpacing(50, after: secondCollection)
+        detailStackView.addArrangedSubview(textFieldStack)
+        
+        textFieldStack.addArrangedSubview(nameTextField)
+        textFieldStack.addArrangedSubview(commentTextField)
     }
 }
