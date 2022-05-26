@@ -2,7 +2,7 @@
 //  GalleryCollectionViewCell.swift
 //  newProject
 //
-//  Created by Толканица Дарья Юрьевна on 25.05.2022.
+//  Created by Толканица Дарья on 25.05.2022.
 //
 
 import UIKit

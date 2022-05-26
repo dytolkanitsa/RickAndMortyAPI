@@ -2,10 +2,15 @@
 //  RandomCharacter.swift
 //  newProject
 //
-//  Created by Толканица Дарья Юрьевна on 23.05.2022.
+//  Created by Толканица Дарья on 23.05.2022.
 //
 
 import UIKit
+
+struct UserModel: Codable {
+    var name: String
+    var comment: String
+}
 
 final class SecondView: UIViewController {
     
@@ -44,15 +49,15 @@ final class SecondView: UIViewController {
         return textFieldStack
     }()
     
-    private var nameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.backgroundColor = .systemYellow
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        nameLabel.font = appFonts.characterNameTitle
-        nameLabel.textColor = appColors.fountainBlue
-        nameLabel.textAlignment = .center
-        return nameLabel
+    private var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.backgroundColor = .systemYellow
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        titleLabel.font = appFonts.characterNameTitle
+        titleLabel.textColor = appColors.fountainBlue
+        titleLabel.textAlignment = .center
+        return titleLabel
     }()
     
     private var nameTextField: UITextField = {
@@ -60,6 +65,9 @@ final class SecondView: UIViewController {
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nameTextField.backgroundColor = .systemPink
+        nameTextField.textColor = .white
+        nameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        nameTextField.font = appFonts.infoLabetsFonts
         return nameTextField
     }()
     
@@ -68,6 +76,9 @@ final class SecondView: UIViewController {
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.heightAnchor.constraint(equalToConstant: 150).isActive = true
         commentTextField.backgroundColor = .systemPink
+        commentTextField.textColor = .white
+        commentTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        commentTextField.font = appFonts.infoLabetsFonts
         return commentTextField
     }()
     
@@ -77,16 +88,27 @@ final class SecondView: UIViewController {
         return secondCollection
     }()
     
+    private var saveButton: UIButton = {
+        let saveButton = UIButton()
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        saveButton.backgroundColor = .systemBlue
+        saveButton.layer.cornerRadius = 15
+        saveButton.setTitle("Save", for: .normal)
+        return saveButton
+    }()
+    
+    let usedDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = appColors.birch
-        
+
         setup()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = appColors.sprout
@@ -99,10 +121,20 @@ final class SecondView: UIViewController {
     }
     
     private func setup() {
+        
+        if let name1 = usedDefaults.object(forKey: "name") {
+            nameTextField.text = name1 as? String
+        }
+        
+        if let comment1 = usedDefaults.object(forKey: "comment") {
+            commentTextField.text = comment1 as? String
+        }
+        
         setupScrollConstraints()
         setupStackConstraints()
-
-        putLabelsInStack()
+        setupButton()
+        
+        putThingsInStack()
         secondCollection.set(cells: Cats.fetchCats())
     }
     
@@ -118,7 +150,6 @@ final class SecondView: UIViewController {
     
     private func setupStackConstraints() {
         detailScrollView.addSubview(detailStackView)
-
         NSLayoutConstraint.activate([
             detailStackView.topAnchor.constraint(equalTo: detailScrollView.topAnchor),
             detailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -126,28 +157,27 @@ final class SecondView: UIViewController {
             detailStackView.bottomAnchor.constraint(equalTo: detailScrollView.bottomAnchor)])
 
     }
-
-    private func createLabel(withColor color: UIColor, title: Int) -> UILabel {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        label.numberOfLines = 0
-        label.adjustsFontSizeToFitWidth = true
-        label.text = " \(title)"
-        label.font = appFonts.infoLabetsFonts
-        label.backgroundColor = color
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 10
-        label.textColor = .white
-        return label
+    
+    private func setupButton() {
+        saveButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
-    private func putLabelsInStack() {
-        detailStackView.addArrangedSubview(nameLabel)
-        detailStackView.setCustomSpacing(30, after: nameLabel)
+    @objc func tapButton() {
+        print("tab")
+        print(commentTextField.text!)
+
+        usedDefaults.setValue(nameTextField.text!, forKey: "name")
+        usedDefaults.setValue(commentTextField.text!, forKey: "comment")
+        commentTextField.resignFirstResponder()
+    }
+    
+    private func putThingsInStack() {
+        detailStackView.addArrangedSubview(titleLabel)
+        detailStackView.setCustomSpacing(20, after: titleLabel)
         detailStackView.addArrangedSubview(secondCollection)
-        detailStackView.setCustomSpacing(50, after: secondCollection)
+        detailStackView.setCustomSpacing(30, after: secondCollection)
         detailStackView.addArrangedSubview(textFieldStack)
+        detailStackView.addArrangedSubview(saveButton)
         
         textFieldStack.addArrangedSubview(nameTextField)
         textFieldStack.addArrangedSubview(commentTextField)
