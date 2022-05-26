@@ -31,7 +31,7 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
         translatesAutoresizingMaskIntoConstraints = false
         layout.minimumLineSpacing = 20
         contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 40)
-        backgroundColor = .systemCyan
+        backgroundColor = appColors.systemCyan
         dataSource = self
         delegate = self
     }
@@ -51,11 +51,7 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 200)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-//
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! GalleryCollectionViewCell
         cell.mainImageView.image = cellsCats[indexPath.row].catsImage

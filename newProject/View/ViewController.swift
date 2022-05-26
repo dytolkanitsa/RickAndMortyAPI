@@ -17,7 +17,7 @@ final class TableViewController: UIViewController {
         
         table.separatorColor = appColors.sprout
         table.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
-        table.backgroundColor = .black
+        table.backgroundColor = appColors.black
         table.translatesAutoresizingMaskIntoConstraints = false
         
         return table
@@ -26,7 +26,7 @@ final class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        view.backgroundColor = .black
+        view.backgroundColor = appColors.black
         
         setup()
     }
@@ -36,7 +36,7 @@ final class TableViewController: UIViewController {
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.black
+        appearance.backgroundColor = appColors.black
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         navigationItem.standardAppearance = appearance

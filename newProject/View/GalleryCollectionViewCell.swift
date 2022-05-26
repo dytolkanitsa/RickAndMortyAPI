@@ -7,12 +7,11 @@
 
 import UIKit
 
-
 final class GalleryCollectionViewCell: UICollectionViewCell {
     
     let mainImageView: UIImageView = {
         let mainImageView = UIImageView()
-        mainImageView.backgroundColor = .systemGreen
+        mainImageView.backgroundColor = appColors.systemGreen
         mainImageView.translatesAutoresizingMaskIntoConstraints = false
         mainImageView.contentMode = .scaleAspectFit
         return mainImageView
@@ -20,7 +19,7 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor  = .systemCyan
+        backgroundColor  = appColors.systemCyan
         contentView.addSubview(mainImageView)
 
         mainImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true

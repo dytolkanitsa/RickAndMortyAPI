@@ -37,7 +37,7 @@ final class SecondView: UIViewController {
     private var textFieldStack: UIStackView = {
         let textFieldStack = UIStackView()
         textFieldStack.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStack.backgroundColor = .systemMint
+        textFieldStack.backgroundColor = appColors.systemMint
         textFieldStack.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         textFieldStack.axis = .vertical
@@ -51,7 +51,7 @@ final class SecondView: UIViewController {
     
     private var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.backgroundColor = .systemYellow
+        titleLabel.backgroundColor = appColors.systemYellow
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         titleLabel.font = appFonts.characterNameTitle
@@ -64,8 +64,8 @@ final class SecondView: UIViewController {
         let nameTextField = UITextField()
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        nameTextField.backgroundColor = .systemPink
-        nameTextField.textColor = .white
+        nameTextField.backgroundColor = appColors.systemPink
+        nameTextField.textColor = appColors.white
         nameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         nameTextField.font = appFonts.infoLabetsFonts
         return nameTextField
@@ -75,8 +75,8 @@ final class SecondView: UIViewController {
         let commentTextField = UITextField()
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        commentTextField.backgroundColor = .systemPink
-        commentTextField.textColor = .white
+        commentTextField.backgroundColor = appColors.systemPink
+        commentTextField.textColor = appColors.white
         commentTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         commentTextField.font = appFonts.infoLabetsFonts
         return commentTextField
@@ -92,7 +92,7 @@ final class SecondView: UIViewController {
         let saveButton = UIButton()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        saveButton.backgroundColor = .systemBlue
+        saveButton.backgroundColor = appColors.systemBlue
         saveButton.layer.cornerRadius = 15
         saveButton.setTitle("Save", for: .normal)
         return saveButton
@@ -166,8 +166,12 @@ final class SecondView: UIViewController {
         print("tab")
         print(commentTextField.text!)
 
-        usedDefaults.setValue(nameTextField.text!, forKey: "name")
-        usedDefaults.setValue(commentTextField.text!, forKey: "comment")
+        if nameTextField.text != nil {
+            usedDefaults.setValue(nameTextField.text, forKey: "name")
+        }
+        if commentTextField.text != nil {
+            usedDefaults.setValue(commentTextField.text, forKey: "comment")
+        }
         commentTextField.resignFirstResponder()
     }
     

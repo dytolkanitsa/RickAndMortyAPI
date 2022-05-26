@@ -40,10 +40,8 @@ final class DetailViewController: UIViewController {
     
     private var imageView: CustomImageView = {
         let imageView = CustomImageView()
-        imageView.backgroundColor = .gray
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 230).isActive = true
-        imageView.backgroundColor = .systemMint
+        imageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         return imageView
@@ -155,7 +153,7 @@ final class DetailViewController: UIViewController {
         label.backgroundColor = color
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 10
-        label.textColor = .white
+        label.textColor = appColors.white
         return label
     }
     

@@ -18,7 +18,7 @@ final class CustomTableViewCell: UITableViewCell {
         cellStack.spacing = 10
         cellStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         cellStack.isLayoutMarginsRelativeArrangement = true
-        cellStack.backgroundColor = .black
+        cellStack.backgroundColor = appColors.black
         return cellStack
     }()
     
