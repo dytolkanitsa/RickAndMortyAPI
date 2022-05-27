@@ -26,7 +26,7 @@ final class CustomTableViewCell: UITableViewCell {
         let characterImageView = CustomImageView()
         characterImageView.layer.cornerRadius = 25
         characterImageView.layer.borderWidth = 3
-        characterImageView.layer.borderColor = appColors.fountainBlue.cgColor
+        characterImageView.layer.borderColor = appColors.fountainBlue?.cgColor
         characterImageView.clipsToBounds = true
         characterImageView.translatesAutoresizingMaskIntoConstraints = false
         characterImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true

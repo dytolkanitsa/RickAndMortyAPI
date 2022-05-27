@@ -164,7 +164,7 @@ final class DetailViewController: UIViewController {
         detailStackView.addArrangedSubview(imageViewContainer)
         imageView.contentMode = .scaleAspectFill
         for labelValue in infoArray {
-            detailStackView.addArrangedSubview(createLabel(withColor: appColors.ming, title: labelValue))
+            detailStackView.addArrangedSubview(createLabel(withColor: appColors.ming ?? .white, title: labelValue))
         }
     }
 }
