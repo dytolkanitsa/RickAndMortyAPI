@@ -12,7 +12,7 @@ struct UserModel: Codable {
     var comment: String
 }
 
-final class SecondView: UIViewController {
+final class CatsView: UIViewController {
     
     private var detailScrollView: UIScrollView = {
         let detailScrollView = UIScrollView()
@@ -112,8 +112,7 @@ final class SecondView: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = appColors.sprout
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        navigationItem.title = "[Cats]"
+        appearance.titleTextAttributes = [.foregroundColor: appColors.white]
     
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
@@ -122,12 +121,12 @@ final class SecondView: UIViewController {
     
     private func setup() {
         
-        if let name1 = usedDefaults.object(forKey: "name") {
-            nameTextField.text = name1 as? String
+        if let name1 = UserComment.userModel?.name {
+            nameTextField.text = name1
         }
-        
-        if let comment1 = usedDefaults.object(forKey: "comment") {
-            commentTextField.text = comment1 as? String
+
+        if let comment1 = UserComment.userModel?.comment {
+            commentTextField.text = comment1
         }
         
         setupScrollConstraints()
@@ -164,15 +163,11 @@ final class SecondView: UIViewController {
     
     @objc func tapButton() {
         print("tab")
-        print(commentTextField.text!)
 
-        if nameTextField.text != nil {
-            usedDefaults.setValue(nameTextField.text, forKey: "name")
+        if let nameText = nameTextField.text, let commentText = commentTextField.text {
+            let userObject = UserModel(name: nameText, comment: commentText)
+            UserComment.userModel = userObject
         }
-        if commentTextField.text != nil {
-            usedDefaults.setValue(commentTextField.text, forKey: "comment")
-        }
-        commentTextField.resignFirstResponder()
     }
     
     private func putThingsInStack() {

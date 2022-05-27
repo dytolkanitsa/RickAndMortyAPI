@@ -25,6 +25,7 @@ final class TableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(tableView)
         view.backgroundColor = appColors.black
         
@@ -36,21 +37,22 @@ final class TableViewController: UIViewController {
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = appColors.black
+        appearance.backgroundColor = appColors.fountainBlue
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
+
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
     }
-    
+        
     private func setup() {
+        
         setupTableViewConstraints()
         fetchData()
     }
     
     private func setupTableViewConstraints(){
-
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -62,6 +64,7 @@ final class TableViewController: UIViewController {
     }
     
     private func fetchData() {
+        
         let nerworkCharacterManager = NetworkManager()
         let urlString = "https://rickandmortyapi.com/api/character"
         nerworkCharacterManager.fetchRMCharacters(urlString: urlString) { [weak self] (result) in
@@ -96,6 +99,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if let indexPath = tableView.indexPathForSelectedRow {
             let characterObj = response?.results[indexPath.row]
             let characterVC = DetailViewController()

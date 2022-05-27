@@ -14,14 +14,15 @@
 		D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */; };
 		D657C6D028368136001EFA16 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D657C6D228368136001EFA16 /* Localizable.strings */; };
 		D657C6D628378344001EFA16 /* RaM-font-en.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D657C6D528378344001EFA16 /* RaM-font-en.ttf */; };
-		D657C6DB283BB6D0001EFA16 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6DA283BB6D0001EFA16 /* SecondView.swift */; };
+		D657C6DB283BB6D0001EFA16 /* CatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6DA283BB6D0001EFA16 /* CatsView.swift */; };
 		D657C700283E548A001EFA16 /* Resouces.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6FF283E548A001EFA16 /* Resouces.swift */; };
 		D657C702283E670D001EFA16 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C701283E670D001EFA16 /* TabBarController.swift */; };
 		D657C704283E7DBB001EFA16 /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C703283E7DBB001EFA16 /* GalleryCollectionView.swift */; };
 		D657C706283E8223001EFA16 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C705283E8223001EFA16 /* GalleryCollectionViewCell.swift */; };
 		D66AAA4B28195F2900D12BEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AAA4A28195F2900D12BEA /* AppDelegate.swift */; };
-		D66AAA4F28195F2900D12BEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AAA4E28195F2900D12BEA /* ViewController.swift */; };
+		D66AAA4F28195F2900D12BEA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AAA4E28195F2900D12BEA /* TableViewController.swift */; };
 		D66AAA5428195F2B00D12BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66AAA5328195F2B00D12BEA /* Assets.xcassets */; };
+		D68D5A982840BA8E00EF00B2 /* UserComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D5A972840BA8E00EF00B2 /* UserComment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,16 +34,17 @@
 		D657C6D128368136001EFA16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D657C6D32836814F001EFA16 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D657C6D528378344001EFA16 /* RaM-font-en.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RaM-font-en.ttf"; path = "newProject/RaM-font-en.ttf"; sourceTree = SOURCE_ROOT; };
-		D657C6DA283BB6D0001EFA16 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
+		D657C6DA283BB6D0001EFA16 /* CatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsView.swift; sourceTree = "<group>"; };
 		D657C6FF283E548A001EFA16 /* Resouces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resouces.swift; sourceTree = "<group>"; };
 		D657C701283E670D001EFA16 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D657C703283E7DBB001EFA16 /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
 		D657C705283E8223001EFA16 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D66AAA4728195F2900D12BEA /* newProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66AAA4A28195F2900D12BEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D66AAA4E28195F2900D12BEA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D66AAA4E28195F2900D12BEA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		D66AAA5328195F2B00D12BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D66AAA5828195F2B00D12BEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68D5A972840BA8E00EF00B2 /* UserComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserComment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,14 +74,6 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		D657C6FE283E543A001EFA16 /* Recources */ = {
-			isa = PBXGroup;
-			children = (
-				D657C6FF283E548A001EFA16 /* Resouces.swift */,
-			);
-			name = Recources;
-			sourceTree = "<group>";
-		};
 		D66AAA3E28195F2900D12BEA = {
 			isa = PBXGroup;
 			children = (
@@ -99,17 +93,34 @@
 		D66AAA4928195F2900D12BEA /* newProject */ = {
 			isa = PBXGroup;
 			children = (
-				D657C6FE283E543A001EFA16 /* Recources */,
+				D68D5A9B2840D37000EF00B2 /* Recorces */,
 				D657C6D9283BAEEF001EFA16 /* Fonts */,
 				D6F4B9992833A58900019052 /* CharacterData */,
+				114948CD281AF06A00C42072 /* Network */,
+				D68D5A9A2840D35900EF00B2 /* TabBar */,
 				D6F4B9982833A56D00019052 /* View */,
 				D66AAA4A28195F2900D12BEA /* AppDelegate.swift */,
 				D66AAA5328195F2B00D12BEA /* Assets.xcassets */,
 				D66AAA5828195F2B00D12BEA /* Info.plist */,
-				114948CD281AF06A00C42072 /* Network */,
 				D657C6D228368136001EFA16 /* Localizable.strings */,
 			);
 			path = newProject;
+			sourceTree = "<group>";
+		};
+		D68D5A9A2840D35900EF00B2 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D657C701283E670D001EFA16 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		D68D5A9B2840D37000EF00B2 /* Recorces */ = {
+			isa = PBXGroup;
+			children = (
+				D657C6FF283E548A001EFA16 /* Resouces.swift */,
+			);
+			name = Recorces;
 			sourceTree = "<group>";
 		};
 		D6F4B9982833A56D00019052 /* View */ = {
@@ -117,12 +128,12 @@
 			children = (
 				D657C703283E7DBB001EFA16 /* GalleryCollectionView.swift */,
 				D657C705283E8223001EFA16 /* GalleryCollectionViewCell.swift */,
-				D66AAA4E28195F2900D12BEA /* ViewController.swift */,
+				D66AAA4E28195F2900D12BEA /* TableViewController.swift */,
 				11184BC2281BEBFC00DCE906 /* DetailViewController.swift */,
 				112B78272832921C0061BE1A /* CustomImageView.swift */,
 				D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */,
-				D657C6DA283BB6D0001EFA16 /* SecondView.swift */,
-				D657C701283E670D001EFA16 /* TabBarController.swift */,
+				D657C6DA283BB6D0001EFA16 /* CatsView.swift */,
+				D68D5A972840BA8E00EF00B2 /* UserComment.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,9 +225,10 @@
 				D657C702283E670D001EFA16 /* TabBarController.swift in Sources */,
 				D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */,
 				D657C700283E548A001EFA16 /* Resouces.swift in Sources */,
-				D66AAA4F28195F2900D12BEA /* ViewController.swift in Sources */,
+				D66AAA4F28195F2900D12BEA /* TableViewController.swift in Sources */,
 				D66AAA4B28195F2900D12BEA /* AppDelegate.swift in Sources */,
-				D657C6DB283BB6D0001EFA16 /* SecondView.swift in Sources */,
+				D68D5A982840BA8E00EF00B2 /* UserComment.swift in Sources */,
+				D657C6DB283BB6D0001EFA16 /* CatsView.swift in Sources */,
 				D657C704283E7DBB001EFA16 /* GalleryCollectionView.swift in Sources */,
 				11184BC3281BEBFC00DCE906 /* DetailViewController.swift in Sources */,
 			);

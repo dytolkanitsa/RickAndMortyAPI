@@ -72,8 +72,8 @@ final class DetailViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = appColors.sprout
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        
         navigationItem.title = "[Information]"
-    
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
@@ -122,20 +122,22 @@ final class DetailViewController: UIViewController {
         guard let character = character else {
             return
         }
-        nameLabel.text = NSLocalizedString(character.name, comment: "")
+        nameLabel.text = appLocalization.localization(key: character.name)
     }
     
     private func setupDataIntoArray() {
         guard let character = character else {
             return
         }
-        infoArray.append(NSLocalizedString("Name: ", comment: "") + NSLocalizedString(character.name, comment: ""))
-        infoArray.append(NSLocalizedString("Status: ", comment: "") + NSLocalizedString(character.status.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Type: ", comment: "") + NSLocalizedString(character.species.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Species: ", comment: "") + NSLocalizedString(character.type, comment: ""))
-        infoArray.append(NSLocalizedString("Gender: ", comment: "") + NSLocalizedString(character.gender.rawValue, comment: ""))
-        infoArray.append(NSLocalizedString("Origin place: ", comment: "") + NSLocalizedString(character.origin.name, comment: ""))
-        infoArray.append(NSLocalizedString("Current location: ", comment: "") + NSLocalizedString(character.location.name, comment: ""))
+
+        infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
+        infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status.rawValue))
+        infoArray.append(appLocalization.localization(key: "Type: ") + appLocalization.localization(key: character.species.rawValue))
+        infoArray.append(appLocalization.localization(key: "Species: ") + appLocalization.localization(key: character.type))
+        infoArray.append(appLocalization.localization(key: "Gender: ") + appLocalization.localization(key: character.gender.rawValue))
+        infoArray.append(appLocalization.localization(key: "Origin place: ") + appLocalization.localization(key: character.origin.name))
+        infoArray.append(appLocalization.localization(key: "Current location: ") + appLocalization.localization(key: character.location.name))
+        
         
         if let url = URL(string: character.image) {
             imageView.loadImage(from: url)

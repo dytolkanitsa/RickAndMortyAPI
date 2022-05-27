@@ -72,6 +72,6 @@ final class CustomTableViewCell: UITableViewCell {
         }
         characterNameLabel.font = appFonts.characterNamesTable
         characterNameLabel.textColor = appColors.fountainBlue
-        characterNameLabel.text = NSLocalizedString(character.name, comment: "")
+        characterNameLabel.text = appLocalization.localization(key: character.name)
     }
 }

@@ -39,7 +39,7 @@ enum appFonts {
 
 enum appLocalization {
     
-    func localization(key: String) -> String {
-        NSLocalizedString(key, comment: "")
+    static func localization(key keyString: String) -> String {
+        NSLocalizedString(keyString, comment: "")
     }
 }

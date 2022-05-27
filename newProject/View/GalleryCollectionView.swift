@@ -11,6 +11,7 @@ struct Cats {
     var catsImage: UIImage
     
     static func fetchCats() -> [Cats] {
+        
         let firstImage = Cats(catsImage: UIImage(named: "cat3")!)
         let secondImage = Cats(catsImage: UIImage(named: "cat2")!)
         let thirdImage = Cats(catsImage: UIImage(named: "cat1")!)

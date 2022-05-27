@@ -14,13 +14,13 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let tableViewVC = TableViewController()
-        let secondVC = SecondView()
+        let secondVC = CatsView()
         
-        tableViewVC.title = NSLocalizedString("[Characters]", comment: "")
-        secondVC.title = NSLocalizedString("[Cats]", comment: "")
+        tableViewVC.title = appLocalization.localization(key: "[Characters]")
+        secondVC.title = appLocalization.localization(key: "[Cats]")
         
-        let navigationContrTV = UINavigationController(rootViewController: tableViewVC)
-        let navigationContrRC = UINavigationController(rootViewController: secondVC)
+        let navigationContrTV = LightContentNavigationController(rootViewController: tableViewVC)
+        let navigationContrRC = LightContentNavigationController(rootViewController: secondVC)
         
         self.setViewControllers([navigationContrTV, navigationContrRC], animated: false)
         
@@ -32,5 +32,11 @@ class TabBarController: UITabBarController {
         }
         UITabBar.appearance().barTintColor = appColors.black
     }
+}
 
+class LightContentNavigationController: UINavigationController {
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
