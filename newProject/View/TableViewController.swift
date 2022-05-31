@@ -111,3 +111,4 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(characterVC, animated: true)
     }
 }
+
