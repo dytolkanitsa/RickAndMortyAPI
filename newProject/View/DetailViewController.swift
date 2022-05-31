@@ -9,16 +9,17 @@ import UIKit
 
 final class DetailViewController: UIViewController {
 
-    private var infoArray = [String]()
+    private lazy var characterId = Int()
+    private lazy var infoArray = [String]()
     var character: CharacterData?
     
-    private var detailScrollView: UIScrollView = {
+    private let detailScrollView: UIScrollView = {
         let detailScrollView = UIScrollView()
         detailScrollView.translatesAutoresizingMaskIntoConstraints = false
         return detailScrollView
     }()
     
-    private var detailStackView: UIStackView = {
+    private let detailStackView: UIStackView = {
         let detailStackView = UIStackView()
         detailStackView.translatesAutoresizingMaskIntoConstraints = false
         detailStackView.backgroundColor = appColors.birch
@@ -32,22 +33,22 @@ final class DetailViewController: UIViewController {
         return detailStackView
     }()
     
-    private var imageViewContainer: UIView = {
+    private let imageViewContainer: UIView = {
         let imageViewContainer = UIView()
         imageViewContainer.translatesAutoresizingMaskIntoConstraints = false
         return imageViewContainer
     }()
     
-    private var imageView: CustomImageView = {
+    private let imageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 270).isActive = true
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         return imageView
     }()
     
-    private var nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.backgroundColor = appColors.birch
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +57,58 @@ final class DetailViewController: UIViewController {
         nameLabel.textColor = appColors.fountainBlue
         nameLabel.textAlignment = .center
         return nameLabel
+    }()
+    
+    private let textFieldStack: UIStackView = {
+        let textFieldStack = UIStackView()
+        textFieldStack.translatesAutoresizingMaskIntoConstraints = false
+        textFieldStack.backgroundColor = appColors.systemMint
+        textFieldStack.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        textFieldStack.clipsToBounds = true
+        textFieldStack.layer.cornerRadius = 10
+        textFieldStack.axis = .vertical
+        textFieldStack.distribution = .fill
+        textFieldStack.alignment = .fill
+        textFieldStack.spacing = 15
+        textFieldStack.layoutMargins = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        textFieldStack.isLayoutMarginsRelativeArrangement = true
+        return textFieldStack
+    }()
+    
+    private let nameTextField: UITextField = {
+        let nameTextField = UITextField()
+        nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameTextField.backgroundColor = appColors.systemPink
+        nameTextField.textColor = appColors.white
+        nameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        nameTextField.font = appFonts.infoLabetsFonts
+        nameTextField.clipsToBounds = true
+        nameTextField.layer.cornerRadius = 10
+        return nameTextField
+    }()
+    
+    private let commentTextField: UITextField = {
+        let commentTextField = UITextField()
+        commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        commentTextField.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        commentTextField.backgroundColor = appColors.systemPink
+        commentTextField.textColor = appColors.white
+        commentTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        commentTextField.font = appFonts.infoLabetsFonts
+        commentTextField.clipsToBounds = true
+        commentTextField.layer.cornerRadius = 10
+        return commentTextField
+    }()
+    
+    private let saveButton: UIButton = {
+        let saveButton = UIButton()
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        saveButton.backgroundColor = appColors.systemBlue
+        saveButton.layer.cornerRadius = 15
+        saveButton.setTitle("Save", for: .normal)
+        return saveButton
     }()
     
     override func viewDidLoad() {
@@ -80,13 +133,31 @@ final class DetailViewController: UIViewController {
     }
     
     private func setup() {
+        
+        guard let nameText = UserComment.userModel?.name, let commentText = UserComment.userModel?.comment else {return}
+        nameTextField.text = nameText
+        commentTextField.text = commentText
+        
         setupScrollConstraints()
         setupStackConstraints()
         setupImageViewConstraints()
         setupNameLabelText()
         setupDataIntoArray()
         putLabelsInStack()
+        
+        setupButton()
     }
+    
+    private func setupButton() {
+        saveButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton() {
+        guard let nameText = nameTextField.text, let commentText = commentTextField.text else {return}
+        let userObject = UserModel(name: nameText, comment: commentText)
+        UserComment.userModel = userObject
+    }
+    
     
     private func setupScrollConstraints() {
         view.addSubview(detailScrollView)
@@ -106,7 +177,6 @@ final class DetailViewController: UIViewController {
             detailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             detailStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             detailStackView.bottomAnchor.constraint(equalTo: detailScrollView.bottomAnchor)])
-
     }
     
     private func setupImageViewConstraints() {
@@ -129,6 +199,8 @@ final class DetailViewController: UIViewController {
         guard let character = character else {
             return
         }
+        
+        characterId = character.id
 
         infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
         infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status.rawValue))
@@ -147,7 +219,6 @@ final class DetailViewController: UIViewController {
     private func createLabel(withColor color: UIColor, title: String) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalToConstant: 55).isActive = true
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         label.text = " \(title)"
@@ -159,12 +230,70 @@ final class DetailViewController: UIViewController {
         return label
     }
     
+    private func createStack(withColor color: UIColor, title: String) -> UIStackView {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        stack.backgroundColor = color
+        stack.layer.cornerRadius = 10
+        stack.spacing = 10
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.alignment = .fill
+
+        let imageFem: UIImageView = {
+            let imageFem = UIImageView()
+            imageFem.translatesAutoresizingMaskIntoConstraints = false
+            imageFem.backgroundColor = .systemMint
+            imageFem.widthAnchor.constraint(equalToConstant: 30).isActive = true
+            imageFem.image = UIImage(named: "female")
+            return imageFem
+        }()
+
+        let imageMale: UIImageView = {
+            let imageMale = UIImageView()
+            imageMale.translatesAutoresizingMaskIntoConstraints = false
+            imageMale.backgroundColor = .systemMint
+            imageMale.widthAnchor.constraint(equalToConstant: 30).isActive = true
+            imageMale.image = UIImage(named: "male")
+            return imageMale
+        }()
+        
+        stack.addArrangedSubview(createLabel(withColor: .systemCyan, title: title))
+        
+        if title.contains("Female") {
+    
+            stack.addArrangedSubview(imageFem)
+            imageFem.contentMode = .scaleAspectFit
+        }
+        
+        if title.contains("Male") {
+
+            stack.addArrangedSubview(imageMale)
+            imageMale.contentMode = .scaleAspectFit
+        }
+        
+        return stack
+    }
+    
     private func putLabelsInStack() {
         detailStackView.addArrangedSubview(nameLabel)
         detailStackView.addArrangedSubview(imageViewContainer)
+        detailStackView.setCustomSpacing(30, after: imageViewContainer)
         imageView.contentMode = .scaleAspectFill
+        
+        var stack = UIStackView()
         for labelValue in infoArray {
-            detailStackView.addArrangedSubview(createLabel(withColor: appColors.ming ?? .white, title: labelValue))
+            stack = createStack(withColor: appColors.ming ?? .white, title: labelValue)
+            detailStackView.addArrangedSubview(stack)
         }
+        
+        detailStackView.setCustomSpacing(30, after: stack)
+        detailStackView.addArrangedSubview(textFieldStack)
+        detailStackView.addArrangedSubview(saveButton)
+        
+        textFieldStack.addArrangedSubview(nameTextField)
+        textFieldStack.addArrangedSubview(commentTextField)
+        
     }
 }

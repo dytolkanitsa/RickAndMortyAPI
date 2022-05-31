@@ -23,6 +23,7 @@
 		D66AAA4F28195F2900D12BEA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AAA4E28195F2900D12BEA /* TableViewController.swift */; };
 		D66AAA5428195F2B00D12BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66AAA5328195F2B00D12BEA /* Assets.xcassets */; };
 		D68D5A982840BA8E00EF00B2 /* UserComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D5A972840BA8E00EF00B2 /* UserComment.swift */; };
+		D6BA6E682845FB5A00543F13 /* UserModelStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6E672845FB5A00543F13 /* UserModelStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		D66AAA5328195F2B00D12BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D66AAA5828195F2B00D12BEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D68D5A972840BA8E00EF00B2 /* UserComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserComment.swift; sourceTree = "<group>"; };
+		D6BA6E672845FB5A00543F13 /* UserModelStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				D657C6FF283E548A001EFA16 /* Resouces.swift */,
+				D6BA6E672845FB5A00543F13 /* UserModelStruct.swift */,
 			);
 			name = Recorces;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				D657C702283E670D001EFA16 /* TabBarController.swift in Sources */,
 				D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */,
 				D657C700283E548A001EFA16 /* Resouces.swift in Sources */,
+				D6BA6E682845FB5A00543F13 /* UserModelStruct.swift in Sources */,
 				D66AAA4F28195F2900D12BEA /* TableViewController.swift in Sources */,
 				D66AAA4B28195F2900D12BEA /* AppDelegate.swift in Sources */,
 				D68D5A982840BA8E00EF00B2 /* UserComment.swift in Sources */,

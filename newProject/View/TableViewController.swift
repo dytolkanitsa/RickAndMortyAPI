@@ -10,9 +10,9 @@ import Foundation
 
 final class TableViewController: UIViewController {
     
-    private var response: SearchResponse? = nil
+    private lazy var response: SearchResponse? = nil
     
-    private var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let table = UITableView()
         
         table.separatorColor = appColors.sprout
@@ -27,7 +27,6 @@ final class TableViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(tableView)
-        view.backgroundColor = appColors.black
         
         setup()
     }
@@ -38,7 +37,11 @@ final class TableViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = appColors.fountainBlue
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.titleTextAttributes = [.foregroundColor: appColors.black]
+        
+        let tabBarCont = navigationController?.tabBarController
+        tabBarCont?.tabBar.barTintColor = appColors.fountainBlue
+        tabBarCont?.tabBar.backgroundColor = appColors.fountainBlue
 
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
@@ -100,12 +103,11 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let characterObj = response?.results[indexPath.row]
-            let characterVC = DetailViewController()
-            characterVC.modalPresentationStyle = .fullScreen
-            characterVC.character = characterObj
-            self.navigationController?.pushViewController(characterVC, animated: true)
-        }
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let characterObj = response?.results[indexPath.row]
+        let characterVC = DetailViewController()
+        characterVC.modalPresentationStyle = .fullScreen
+        characterVC.character = characterObj
+        self.navigationController?.pushViewController(characterVC, animated: true)
     }
 }

@@ -9,14 +9,14 @@ import UIKit
 
 final class CustomTableViewCell: UITableViewCell {
 
-    private var cellStack: UIStackView = {
+    private let cellStack: UIStackView = {
         let cellStack = UIStackView()
         cellStack.translatesAutoresizingMaskIntoConstraints = false
         cellStack.axis = .horizontal
         cellStack.distribution = .fill
         cellStack.alignment = .fill
         cellStack.spacing = 10
-        cellStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        cellStack.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 0)
         cellStack.isLayoutMarginsRelativeArrangement = true
         cellStack.backgroundColor = appColors.black
         return cellStack
@@ -26,7 +26,7 @@ final class CustomTableViewCell: UITableViewCell {
         let characterImageView = CustomImageView()
         characterImageView.layer.cornerRadius = 25
         characterImageView.layer.borderWidth = 3
-        characterImageView.layer.borderColor = appColors.fountainBlue?.cgColor
+        characterImageView.layer.borderColor = appColors.systemMint.cgColor
         characterImageView.clipsToBounds = true
         characterImageView.translatesAutoresizingMaskIntoConstraints = false
         characterImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -67,9 +67,9 @@ final class CustomTableViewCell: UITableViewCell {
     }
     
     func set(character: CharacterData){
-        if let url = URL(string: character.image) {
-            characterImageView.loadImage(from: url)
-        }
+
+        guard let url = URL(string: character.image) else {return}
+        characterImageView.loadImage(from: url)
         characterNameLabel.font = appFonts.characterNamesTable
         characterNameLabel.textColor = appColors.fountainBlue
         characterNameLabel.text = appLocalization.localization(key: character.name)

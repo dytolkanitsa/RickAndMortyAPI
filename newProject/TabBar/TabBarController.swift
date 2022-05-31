@@ -30,13 +30,12 @@ class TabBarController: UITabBarController {
         for x in 0..<items.count {
             items[x].image = UIImage(named: images[x])?.withRenderingMode(.alwaysOriginal)
         }
-        UITabBar.appearance().barTintColor = appColors.black
     }
 }
 
 class LightContentNavigationController: UINavigationController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
 }

@@ -13,7 +13,8 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
         let mainImageView = UIImageView()
         mainImageView.backgroundColor = appColors.systemGreen
         mainImageView.translatesAutoresizingMaskIntoConstraints = false
-        mainImageView.contentMode = .scaleAspectFit
+        mainImageView.clipsToBounds = true
+        mainImageView.contentMode = .scaleAspectFill
         return mainImageView
     }()
     

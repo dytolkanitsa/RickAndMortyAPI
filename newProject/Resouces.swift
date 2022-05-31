@@ -17,9 +17,10 @@ enum appColors {
     static let ming = UIColor(named: "ming")
     static let mountainMist = UIColor(named: "mountainMist")
     static let chatelle = UIColor(named: "chatelle")
+    static let peppermint = UIColor(named: "peppermint")
     
     // appColors
-    static let black = UIColor(named: "black")
+    static let black = UIColor.black
     static let white = UIColor.white
     static let gray = UIColor.gray
     static let systemCyan = UIColor.systemCyan
