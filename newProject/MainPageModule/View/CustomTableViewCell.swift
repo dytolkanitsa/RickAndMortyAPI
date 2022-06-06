@@ -66,12 +66,12 @@ final class CustomTableViewCell: UITableViewCell {
         cellStack.addArrangedSubview(characterNameLabel)
     }
     
-    func set(character: CharacterData){
+    func set(character: CellData){
 
         guard let url = URL(string: character.image) else {return}
         characterImageView.loadImage(from: url)
         characterNameLabel.font = appFonts.characterNamesTable
         characterNameLabel.textColor = appColors.fountainBlue
-        characterNameLabel.text = appLocalization.localization(key: character.name)
+        characterNameLabel.text = appLocalization.localization(key: character.title)
     }
 }

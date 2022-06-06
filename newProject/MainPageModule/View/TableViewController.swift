@@ -10,7 +10,7 @@ import Foundation
 
 final class TableViewController: UIViewController {
     
-    private lazy var response: SearchResponse? = nil
+    var presenter: TableViewDataCoordination?
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -25,7 +25,6 @@ final class TableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(tableView)
         
         setup()
@@ -49,9 +48,7 @@ final class TableViewController: UIViewController {
     }
         
     private func setup() {
-        
         setupTableViewConstraints()
-        fetchData()
     }
     
     private func setupTableViewConstraints(){
@@ -65,37 +62,20 @@ final class TableViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
-    private func fetchData() {
-        
-        let nerworkCharacterManager = NetworkManager()
-        let urlString = "https://rickandmortyapi.com/api/character"
-        nerworkCharacterManager.fetchRMCharacters(urlString: urlString) { [weak self] (result) in
-            switch result {
-            case .success(let searchResponse):
-                self?.response = searchResponse
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("error", error)
-            }
-        }
-    }
 }
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return response?.results.count ?? 0
+        return presenter?.resultsCount ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        let characterObj = response?.results[indexPath.row]
-        guard let character = characterObj else { return cell }
-        cell.set(character: character)
+        presenter?.putDataInCell(indexPath)
+        guard let characterData = presenter?.cellData else { return cell }
+        cell.set(character: characterData)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
@@ -103,12 +83,22 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let characterObj = response?.results[indexPath.row]
-        let characterVC = DetailViewController()
-        characterVC.modalPresentationStyle = .fullScreen
-        characterVC.character = characterObj
-        self.navigationController?.pushViewController(characterVC, animated: true)
+        guard tableView.indexPathForSelectedRow != nil else { return }
+        presenter?.tableCellTapped(indexPath)
+    }
+    
+    func pushNewView(_ view: UIViewController) {
+        view.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(view, animated: true)
     }
 }
 
+extension TableViewController: TableViewParsingResults {
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+    
+    func showError(_ error: Error) {
+        print(error)
+    }
+}

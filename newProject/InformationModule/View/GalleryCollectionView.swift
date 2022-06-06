@@ -7,22 +7,9 @@
 
 import UIKit
 
-struct Cats {
-    var catsImage: UIImage
-    
-    static func fetchCats() -> [Cats] {
-        
-        let firstImage = Cats(catsImage: UIImage(named: "cat3")!)
-        let secondImage = Cats(catsImage: UIImage(named: "cat2")!)
-        let thirdImage = Cats(catsImage: UIImage(named: "cat1")!)
-        
-        return [firstImage, secondImage, thirdImage]
-    }
-}
-
 final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var cellsCats = [Cats]()
+    var cellsCats = [CatsImages]()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -41,7 +28,7 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(cells: [Cats]) {
+    func set(cells: [CatsImages]) {
         self.cellsCats = cells
     }
     

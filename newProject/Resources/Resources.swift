@@ -10,7 +10,7 @@ import UIKit
 
 enum appColors {
     
-    // custom
+    // custom colors
     static let sprout = UIColor(named: "sprout")
     static let birch = UIColor(named: "birch")
     static let fountainBlue = UIColor(named: "fountainBlue")

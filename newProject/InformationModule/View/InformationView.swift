@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class CatsView: UIViewController {
+final class InformationViewController: UIViewController {
+    
+    var presenter: InformationViewPresenterProtocol?
     
     private let catsScrollView: UIScrollView = {
         let detailScrollView = UIScrollView()
@@ -34,8 +36,8 @@ final class CatsView: UIViewController {
         titleLabel.backgroundColor = appColors.systemYellow
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        titleLabel.font = appFonts.characterNameTitle
-        titleLabel.textColor = appColors.fountainBlue
+        titleLabel.font = appFonts.infoLabetsFonts
+        titleLabel.textColor = appColors.systemPink
         titleLabel.textAlignment = .center
         return titleLabel
     }()
@@ -49,8 +51,8 @@ final class CatsView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = appColors.birch
-
         setup()
+        presenter?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +72,7 @@ final class CatsView: UIViewController {
         setupStackConstraints()
         
         putThingsInStack()
-        secondCollection.set(cells: Cats.fetchCats())
+        secondCollection.set(cells: CatsImages.fetchCats())
     }
     
     private func setupScrollConstraints() {
@@ -96,5 +98,11 @@ final class CatsView: UIViewController {
         catsStackView.addArrangedSubview(titleLabel)
         catsStackView.setCustomSpacing(20, after: titleLabel)
         catsStackView.addArrangedSubview(secondCollection)
+    }
+}
+
+extension InformationViewController: InformationViewProtocol {
+    func showLabelText() {
+        titleLabel.text = "Daria Tolkanitsa"
     }
 }

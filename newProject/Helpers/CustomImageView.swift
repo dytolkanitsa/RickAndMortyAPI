@@ -11,7 +11,7 @@ var imageCache = NSCache<AnyObject, AnyObject>()
 
 final class CustomImageView: UIImageView {
     
-    private var task: URLSessionDataTask!
+    private var task: URLSessionDataTask?
     
     func loadImage(from url: URL) {
         
@@ -33,6 +33,6 @@ final class CustomImageView: UIImageView {
                 self.image = newImage
             }
         }
-        task.resume()
+        task?.resume()
     }
 }

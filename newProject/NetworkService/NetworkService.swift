@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class NetworkManager {
+protocol NetworkServiceProtocol {
+    func fetchRMCharacters(urlString: String, completion: @escaping (Result<SearchResponse, Error>) -> Void)
+}
+
+final class NetworkService: NetworkServiceProtocol {
     
     func fetchRMCharacters(urlString: String, completion: @escaping (Result<SearchResponse, Error>) -> Void) {
         guard let url = URL(string: urlString) else { return }
