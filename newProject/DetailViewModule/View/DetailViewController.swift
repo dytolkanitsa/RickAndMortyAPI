@@ -11,7 +11,7 @@ final class DetailViewController: UIViewController {
 
     private lazy var characterId = Int()
     private lazy var infoArray = [String]()
-    var character: CharacterData?
+    var presenter: DetailViewPresenterProtocol?
     
     private let detailScrollView: UIScrollView = {
         let detailScrollView = UIScrollView()
@@ -114,8 +114,8 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = appColors.birch
-        
         setup()
+        presenter?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -134,17 +134,10 @@ final class DetailViewController: UIViewController {
     
     private func setup() {
         
-        guard let nameText = UserComment.userModel?.name, let commentText = UserComment.userModel?.comment else {return}
-        nameTextField.text = nameText
-        commentTextField.text = commentText
-        
         setupScrollConstraints()
         setupStackConstraints()
         setupImageViewConstraints()
-        setupNameLabelText()
-        setupDataIntoArray()
         putLabelsInStack()
-        
         setupButton()
     }
     
@@ -153,11 +146,10 @@ final class DetailViewController: UIViewController {
     }
     
     @objc func tapButton() {
-        guard let nameText = nameTextField.text, let commentText = commentTextField.text else {return}
-        let userObject = UserModel(name: nameText, comment: commentText)
-        UserComment.userModel = userObject
+        guard let nameText = nameTextField.text, let commentText = commentTextField.text else { return }
+        let userObject = UserModel(id: characterId, name: nameText, comment: commentText)
+        UserComment.saveComment(userComment: userObject)
     }
-    
     
     private func setupScrollConstraints() {
         view.addSubview(detailScrollView)
@@ -187,35 +179,7 @@ final class DetailViewController: UIViewController {
             imageView.centerXAnchor.constraint(equalTo: imageViewContainer.centerXAnchor),
             imageView.bottomAnchor.constraint(equalTo: imageViewContainer.bottomAnchor)])
     }
-
-    private func setupNameLabelText() {
-        guard let character = character else {
-            return
-        }
-        nameLabel.text = appLocalization.localization(key: character.name)
-    }
-    
-    private func setupDataIntoArray() {
-        guard let character = character else {
-            return
-        }
-        
-        characterId = character.id
-
-        infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
-        infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status.rawValue))
-        infoArray.append(appLocalization.localization(key: "Type: ") + appLocalization.localization(key: character.species.rawValue))
-        infoArray.append(appLocalization.localization(key: "Species: ") + appLocalization.localization(key: character.type))
-        infoArray.append(appLocalization.localization(key: "Gender: ") + appLocalization.localization(key: character.gender.rawValue))
-        infoArray.append(appLocalization.localization(key: "Origin place: ") + appLocalization.localization(key: character.origin.name))
-        infoArray.append(appLocalization.localization(key: "Current location: ") + appLocalization.localization(key: character.location.name))
-        
-        
-        if let url = URL(string: character.image) {
-            imageView.loadImage(from: url)
-        }
-    }
-    
+ 
     private func createLabel(withColor color: UIColor, title: String) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -231,6 +195,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func createStack(withColor color: UIColor, title: String) -> UIStackView {
+    
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.heightAnchor.constraint(equalToConstant: 55).isActive = true
@@ -240,38 +205,8 @@ final class DetailViewController: UIViewController {
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.alignment = .fill
-
-        let imageFem: UIImageView = {
-            let imageFem = UIImageView()
-            imageFem.translatesAutoresizingMaskIntoConstraints = false
-            imageFem.backgroundColor = .systemMint
-            imageFem.widthAnchor.constraint(equalToConstant: 30).isActive = true
-            imageFem.image = UIImage(named: "female")
-            return imageFem
-        }()
-
-        let imageMale: UIImageView = {
-            let imageMale = UIImageView()
-            imageMale.translatesAutoresizingMaskIntoConstraints = false
-            imageMale.backgroundColor = .systemMint
-            imageMale.widthAnchor.constraint(equalToConstant: 30).isActive = true
-            imageMale.image = UIImage(named: "male")
-            return imageMale
-        }()
         
-        stack.addArrangedSubview(createLabel(withColor: .systemCyan, title: title))
-        
-        if title.contains("Female") {
-    
-            stack.addArrangedSubview(imageFem)
-            imageFem.contentMode = .scaleAspectFit
-        }
-        
-        if title.contains("Male") {
-
-            stack.addArrangedSubview(imageMale)
-            imageMale.contentMode = .scaleAspectFit
-        }
+        stack.addArrangedSubview(createLabel(withColor: color, title: title))
         
         return stack
     }
@@ -296,4 +231,40 @@ final class DetailViewController: UIViewController {
         textFieldStack.addArrangedSubview(commentTextField)
         
     }
+}
+
+extension DetailViewController: WorkWithRawDetailData {
+    
+    func displayTitle(name: String?) {
+        guard let name = name else {
+            return
+        }
+        print(name)
+        nameLabel.text = appLocalization.localization(key: name)
+    }
+    
+    func setupDataIntoArray(character: DetailInformation?) {
+        guard let character = character else { return }
+        
+        characterId = character.id
+
+        infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
+        infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status))
+        infoArray.append(appLocalization.localization(key: "Type: ") + appLocalization.localization(key: character.species))
+        infoArray.append(appLocalization.localization(key: "Species: ") + appLocalization.localization(key: character.type))
+        infoArray.append(appLocalization.localization(key: "Gender: ") + appLocalization.localization(key: character.gender))
+        infoArray.append(appLocalization.localization(key: "Origin place: ") + appLocalization.localization(key: character.origin))
+        infoArray.append(appLocalization.localization(key: "Current location: ") + appLocalization.localization(key: character.location))
+        
+        
+        if let url = URL(string: character.image) {
+            imageView.loadImage(from: url)
+        }
+    }
+    
+    func presentComment(userModel: UserModel) {
+        nameTextField.text = userModel.name
+        commentTextField.text = userModel.comment
+    }
+    
 }

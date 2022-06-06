@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserModel: Codable {
-//    var id: Int
+    var id: Int
     var name: String
     var comment: String
 }
