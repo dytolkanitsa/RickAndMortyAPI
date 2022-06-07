@@ -15,9 +15,4 @@ final class InformationPresenter: InformationViewPresenterProtocol {
     init(view: InformationViewProtocol) {
         self.view = view
     }
-    
-    func viewDidLoad() {
-        self.view?.showLabelText()
-    }
-    
 }

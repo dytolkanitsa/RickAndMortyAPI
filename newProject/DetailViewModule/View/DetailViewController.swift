@@ -36,6 +36,7 @@ final class DetailViewController: UIViewController {
     private let imageViewContainer: UIView = {
         let imageViewContainer = UIView()
         imageViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageViewContainer
     }()
     

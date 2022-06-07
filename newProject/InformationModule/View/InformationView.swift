@@ -12,9 +12,9 @@ final class InformationViewController: UIViewController {
     var presenter: InformationViewPresenterProtocol?
     
     private let catsScrollView: UIScrollView = {
-        let detailScrollView = UIScrollView()
-        detailScrollView.translatesAutoresizingMaskIntoConstraints = false
-        return detailScrollView
+        let catsScrollView = UIScrollView()
+        catsScrollView.translatesAutoresizingMaskIntoConstraints = false
+        return catsScrollView
     }()
     
     private let catsStackView: UIStackView = {
@@ -44,7 +44,8 @@ final class InformationViewController: UIViewController {
     
     private let secondCollection: GalleryCollectionView = {
         let secondCollection = GalleryCollectionView()
-        secondCollection.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        secondCollection.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        secondCollection.isPagingEnabled = true
         return secondCollection
     }()
     
