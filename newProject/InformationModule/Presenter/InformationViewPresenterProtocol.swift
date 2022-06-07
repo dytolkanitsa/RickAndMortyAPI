@@ -8,6 +8,4 @@
 import Foundation
 import UIKit
 
-protocol InformationViewPresenterProtocol: AnyObject {
-    func viewDidLoad()
-}
+protocol InformationViewPresenterProtocol: viewDidLoadProtocol { }

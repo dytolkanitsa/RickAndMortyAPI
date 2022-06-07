@@ -40,6 +40,7 @@
 		D6BA6F68284A2F6600543F13 /* DetailViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6F67284A2F6600543F13 /* DetailViewPresenterProtocol.swift */; };
 		D6BA6F6A284A2FA400543F13 /* InformationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6F69284A2FA400543F13 /* InformationViewProtocol.swift */; };
 		D6BA6F6C284A2FC800543F13 /* InformationViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6F6B284A2FC800543F13 /* InformationViewPresenterProtocol.swift */; };
+		D6BA6F6E284E09A700543F13 /* viewDidLoadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6F6D284E09A700543F13 /* viewDidLoadProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		D6BA6F67284A2F6600543F13 /* DetailViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewPresenterProtocol.swift; sourceTree = "<group>"; };
 		D6BA6F69284A2FA400543F13 /* InformationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewProtocol.swift; sourceTree = "<group>"; };
 		D6BA6F6B284A2FC800543F13 /* InformationViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		D6BA6F6D284E09A700543F13 /* viewDidLoadProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewDidLoadProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +299,7 @@
 				112B78272832921C0061BE1A /* CustomImageView.swift */,
 				D6BA6F2A2847898D00543F13 /* ModuleBuilder.swift */,
 				D68D5A972840BA8E00EF00B2 /* UserComment.swift */,
+				D6BA6F6D284E09A700543F13 /* viewDidLoadProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				D6BA6F60284A2E9200543F13 /* TabBarPresenterProtocol.swift in Sources */,
 				114948C6281A6B4500C42072 /* SearchResponse.swift in Sources */,
 				D657C702283E670D001EFA16 /* TabBarController.swift in Sources */,
+				D6BA6F6E284E09A700543F13 /* viewDidLoadProtocol.swift in Sources */,
 				D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */,
 				D657C700283E548A001EFA16 /* Resources.swift in Sources */,
 				D6BA6E682845FB5A00543F13 /* UserModelStruct.swift in Sources */,

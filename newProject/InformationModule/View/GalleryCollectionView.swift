@@ -17,8 +17,7 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
         super.init(frame: .zero, collectionViewLayout: layout)
         register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         translatesAutoresizingMaskIntoConstraints = false
-        layout.minimumLineSpacing = 20
-        contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 40)
+        layout.minimumLineSpacing = 0
         backgroundColor = appColors.systemCyan
         dataSource = self
         delegate = self
@@ -37,7 +36,7 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 200)
+        return CGSize(width: self.bounds.width, height: self.bounds.height)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

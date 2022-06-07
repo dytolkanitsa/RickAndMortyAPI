@@ -8,6 +8,4 @@
 import Foundation
 import UIKit
 
-protocol DetailViewPresenterProtocol: AnyObject {
-    func viewDidLoad()
-}
+protocol DetailViewPresenterProtocol: viewDidLoadProtocol { }
