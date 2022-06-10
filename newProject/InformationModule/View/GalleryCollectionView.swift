@@ -9,6 +9,7 @@ import UIKit
 
 final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var presenter: InformationViewPresenterProtocol?
     var cellsCats = [CatsImages]()
     
     init() {
@@ -27,8 +28,9 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(cells: [CatsImages]) {
+    func set(cells: [CatsImages], presenter: InformationViewPresenterProtocol) {
         self.cellsCats = cells
+        self.presenter = presenter
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -43,5 +45,12 @@ final class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, U
         let cell = dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! GalleryCollectionViewCell
         cell.mainImageView.image = cellsCats[indexPath.row].catsImage
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        for cell in self.visibleCells {
+            guard let indexPath = self.indexPath(for: cell) else { return }
+            presenter?.showImageIndex(indexPath, cellsCats.count)
+        }
     }
 }

@@ -49,6 +49,27 @@ final class InformationViewController: UIViewController {
         return secondCollection
     }()
     
+    private let countLabel: UILabel = {
+        let countLabel = UILabel()
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
+        countLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        countLabel.textAlignment = .left
+        countLabel.text = "1 of 3"
+        countLabel.textColor = .white
+        countLabel.font = appFonts.imageCountLabel
+        return countLabel
+    }()
+    
+    private let infornaionLabel: UILabel = {
+        let infornaionLabel = UILabel()
+        infornaionLabel.translatesAutoresizingMaskIntoConstraints = false
+        infornaionLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        infornaionLabel.clipsToBounds = true
+        infornaionLabel.layer.cornerRadius = 10
+        infornaionLabel.backgroundColor = .systemMint
+        return infornaionLabel
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = appColors.birch
@@ -71,9 +92,8 @@ final class InformationViewController: UIViewController {
     private func setup() {
         setupScrollConstraints()
         setupStackConstraints()
-        
         putThingsInStack()
-        secondCollection.set(cells: CatsImages.fetchCats())
+        secondCollection.set(cells: CatsImages.fetchCats(), presenter: presenter!)
     }
     
     private func setupScrollConstraints() {
@@ -99,11 +119,19 @@ final class InformationViewController: UIViewController {
         catsStackView.addArrangedSubview(titleLabel)
         catsStackView.setCustomSpacing(20, after: titleLabel)
         catsStackView.addArrangedSubview(secondCollection)
+        catsStackView.addArrangedSubview(countLabel)
+        catsStackView.addArrangedSubview(infornaionLabel)
     }
 }
 
 extension InformationViewController: InformationViewProtocol {
+    
+    
     func showLabelText() {
         titleLabel.text = "Daria Tolkanitsa"
+    }
+    
+    func showNumberOfCell(index: Int, numberOfCells: Int) {
+        countLabel.text = "\(index + 1)" + " of " + "\(numberOfCells)"
     }
 }

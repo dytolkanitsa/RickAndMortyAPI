@@ -139,6 +139,7 @@ final class DetailViewController: UIViewController {
         setupStackConstraints()
         setupImageViewConstraints()
         putLabelsInStack()
+        
         setupButton()
     }
     
@@ -147,6 +148,7 @@ final class DetailViewController: UIViewController {
     }
     
     @objc func tapButton() {
+        saveButton.shake()
         guard let nameText = nameTextField.text, let commentText = commentTextField.text else { return }
         let userObject = UserModel(id: characterId, name: nameText, comment: commentText)
         UserComment.saveComment(userComment: userObject)

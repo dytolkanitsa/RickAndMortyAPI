@@ -15,4 +15,12 @@ final class InformationPresenter: InformationViewPresenterProtocol {
     init(view: InformationViewProtocol) {
         self.view = view
     }
+    
+    func viewDidLoad() {
+        self.view?.showLabelText()
+    }
+    
+    func showImageIndex(_ indexPath: IndexPath, _ numberOfCell: Int) {
+        view?.showNumberOfCell(index: indexPath.row, numberOfCells: numberOfCell)
+    }
 }

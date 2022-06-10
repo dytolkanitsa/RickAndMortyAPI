@@ -19,6 +19,11 @@ final class DetailPresenter: DetailViewPresenterProtocol {
         view.setupDataIntoArray(character: character)
     }
     
+    func viewDidLoad() {
+        view?.displayTitle(name: character?.name)
+        findComment()
+    }
+    
     func findComment() {
         for num in 0..<UserComment.userModel.count {
             if UserComment.userModel[num].id == character?.id{

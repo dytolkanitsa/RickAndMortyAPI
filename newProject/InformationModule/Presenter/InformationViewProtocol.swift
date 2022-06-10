@@ -12,5 +12,6 @@ import UIKit
 protocol InformationViewProtocol: AnyObject {
     ///  Устанавливает имя разработчика в лэйбл
     func showLabelText()
+    func showNumberOfCell(index: Int, numberOfCells: Int)
 }
 

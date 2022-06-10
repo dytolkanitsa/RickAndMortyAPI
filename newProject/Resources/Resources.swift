@@ -36,6 +36,7 @@ enum appFonts {
     static let infoLabetsFonts = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
     static let characterNamesTable = UIFont(name: "GetSchwifty-Regular", size: 20)
     static let characterNameTitle = UIFont(name: "GetSchwifty-Regular", size: 35)
+    static let imageCountLabel = UIFont(name: "HelveticaNeue-CondensedBold", size: 13)
 }
 
 enum appLocalization {
