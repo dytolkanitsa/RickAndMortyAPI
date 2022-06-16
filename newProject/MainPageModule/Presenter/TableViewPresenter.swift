@@ -12,7 +12,7 @@ final class TableViewPresenter: TableViewOutputProtocol {
     
     weak var view: TableViewInputProtocol? // view
     var interactor: InteractorMainPageOutputProtocol? // interactor
-    var router: RouterMainPageInputProtocol? // router
+    var router: TableViewRouterInputProtocol? // router
     
     var response: SearchResponse?
     var resultsCount: Int?
@@ -20,10 +20,10 @@ final class TableViewPresenter: TableViewOutputProtocol {
     var cellData: CellData?
     var detailInformation: DetailInformation?
     
-    init(view: TableViewInputProtocol, interactor: InteractorMainPageOutputProtocol) {
+    init(view: TableViewInputProtocol, interactor: InteractorMainPageOutputProtocol, router: TableViewRouterInputProtocol) {
         self.view = view
         self.interactor = interactor
-        
+        self.router = router
         getData()
     }
     
@@ -50,8 +50,7 @@ final class TableViewPresenter: TableViewOutputProtocol {
     
     func tableCellTapped(_ indexPath: IndexPath) {
         interactor?.prepareData(indexPath, completion: { [weak self] detailInformation in
-            let characterVC = ModuleBuilder.createDetailModule(character: detailInformation)
-            self?.view?.pushNewView(characterVC)
+            self?.router?.showCharacterDetail(on: self?.view, with: detailInformation)
         })
     }
 }

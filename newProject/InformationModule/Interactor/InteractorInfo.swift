@@ -8,14 +8,7 @@
 import Foundation
 import UIKit
 
-protocol InteractorInformationInputProtocol: AnyObject {
-    
-}
+// MARK: - Interacor Otput (Interactor -> Presenter)
+protocol InteractorInformationOutputProtocol: AnyObject { }
 
-protocol InteractorInformationOutputProtocol: AnyObject {
-
-}
-
-class InteractorInformationView: InteractorInformationOutputProtocol {
-    
-}
+class InteractorInformationView: InteractorInformationOutputProtocol { }

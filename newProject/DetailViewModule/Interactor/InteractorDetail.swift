@@ -8,10 +8,7 @@
 import Foundation
 import UIKit
 
-protocol InteractorDetailInputProtocol: AnyObject {
-    
-}
-
+// MARK: - Interacor Otput (Interactor -> Presenter)
 protocol InteractorDetailOutputProtocol: AnyObject {
     func putDataInArray(_ character: DetailInformation?, completion: @escaping ([String]?, Int?) -> Void)
 }

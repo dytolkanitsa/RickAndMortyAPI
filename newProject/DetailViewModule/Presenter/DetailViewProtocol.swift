@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - View Input (View -> Presenter)
 /// Протокол устанавливает строку в качестве заголовка, помещает информацию в массив для дальнейшей работы
 protocol WorkWithRawDetailData: AnyObject {
     /// Устанавливает переданную строку  в качестве текста  в лэйбле

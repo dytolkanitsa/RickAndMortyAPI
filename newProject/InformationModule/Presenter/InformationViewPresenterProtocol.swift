@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - View Output (Presenter-> View)
 protocol InformationViewPresenterProtocol: AnyObject {
     func viewDidLoad()
     ///  Метод отвечает за передачу во вью индекса ячейки, на которой пользователь находится в данный момент, и вывод ее на экран

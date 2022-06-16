@@ -87,10 +87,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         presenter?.tableCellTapped(indexPath)
     }
     
-    func pushNewView(_ view: UIViewController) {
-        view.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(view, animated: true)
-    }
+//    func pushNewView(_ view: UIViewController) {
+//        view.modalPresentationStyle = .fullScreen
+//        self.navigationController?.pushViewController(view, animated: true)
+//    }
 }
 
 extension TableViewController: TableViewInputProtocol {

@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
-protocol RouterMainPageInputProtocol {
-    
+// MARK: - Router Input (Router -> Presenter)
+protocol TableViewRouterInputProtocol {
+    func showCharacterDetail(on view: TableViewInputProtocol?, with detail: DetailInformation?)
 }
 
-class RouterMainPage {
+final class RouterMainPage: TableViewRouterInputProtocol {
     var presenter: TableViewOutputProtocol? // presenter
+    
+    func showCharacterDetail(on view: TableViewInputProtocol?, with detailInformation: DetailInformation?) {
+        let characterVC = ModuleBuilder.createDetailModule(character: detailInformation)
+        let viewController = view as! TableViewController
+        viewController.navigationController?.pushViewController(characterVC, animated: true)
+    }
 }

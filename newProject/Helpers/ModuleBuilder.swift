@@ -21,7 +21,8 @@ final class ModuleBuilder: Builder {
     static func createTableViewModule() -> UIViewController {
         let view = TableViewController()
         let interactor = InteractorMainPage()
-        let presenter = TableViewPresenter(view: view, interactor: interactor)
+        let router = RouterMainPage()
+        let presenter = TableViewPresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         return view
     }

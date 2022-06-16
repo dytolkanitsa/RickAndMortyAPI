@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - View Input (View -> Presenter)
 /// Протокол отвечает  за выполнение методов в случае успешного и неудачного парсинга API , отображение нового вью
 //protocol TableViewParsingResults: AnyObject {
 protocol TableViewInputProtocol: AnyObject {
@@ -18,5 +19,5 @@ protocol TableViewInputProtocol: AnyObject {
     func showError(_ error: Error?)
     /// Отвечает  за показ и настройку презентации переданной вью при взаимодействии пользователя с ячейкой таблицы
     /// - Parameter view: view, которую необходимо открыть
-    func pushNewView(_ view: UIViewController)
+//    func pushNewView(_ view: UIViewController)
 }

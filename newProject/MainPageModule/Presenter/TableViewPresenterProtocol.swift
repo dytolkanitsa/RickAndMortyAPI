@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - View Output (Presenter-> View)
 /// Протокол отвечает за отображение информации в таблице и передачу информации другому вью при нажатии на отдельную ячейку
 protocol TableViewOutputProtocol: AnyObject {
     var response: SearchResponse? { get set }

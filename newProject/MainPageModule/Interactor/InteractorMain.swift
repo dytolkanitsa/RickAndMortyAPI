@@ -8,10 +8,7 @@
 import Foundation
 import UIKit
 
-protocol InteractorMainPageInputProtocol: AnyObject {
-    
-}
-
+// MARK: - Interacor Otput (Interactor -> Presenter)
 protocol InteractorMainPageOutputProtocol: AnyObject {
     func fetchData(completion: @escaping (SearchResponse?, Int?, Error?) -> Void)
     func putDataInCell(_ indexPath: IndexPath, completion: @escaping (CellData?) -> Void)

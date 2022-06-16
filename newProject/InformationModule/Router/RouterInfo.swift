@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import UIKit
+
+// MARK: - Router Input (Router -> Presenter)
+protocol InformationViewRouterInputProtocol {
+    
+}
+
+final class InformationViewRouter: InformationViewRouterInputProtocol {
+    
+}
