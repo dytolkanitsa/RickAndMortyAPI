@@ -18,7 +18,7 @@ protocol InteractorMainPageOutputProtocol: AnyObject {
     func prepareData(_ indexPath: IndexPath, completion: @escaping (DetailInformation?) -> Void)
 }
 
-class InteractorMainPage: InteractorMainPageOutputProtocol {
+final class InteractorMainPage: InteractorMainPageOutputProtocol {
     
     var presenter: TableViewOutputProtocol? // presenter
     

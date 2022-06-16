@@ -10,4 +10,5 @@ import UIKit
 
 protocol DetailViewPresenterProtocol: AnyObject {
     func viewDidLoad()
+    func putDataIntoArray()
 }

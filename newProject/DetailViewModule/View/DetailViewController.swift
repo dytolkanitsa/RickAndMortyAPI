@@ -246,21 +246,10 @@ extension DetailViewController: WorkWithRawDetailData {
         nameLabel.text = appLocalization.localization(key: name)
     }
     
-    func setupDataIntoArray(character: DetailInformation?) {
-        guard let character = character else { return }
+    func setupDataIntoArray(character: DetailInformation?, _ infoArr: [String]) {
+        infoArray = infoArr
         
-        characterId = character.id
-
-        infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
-        infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status))
-        infoArray.append(appLocalization.localization(key: "Type: ") + appLocalization.localization(key: character.species))
-        infoArray.append(appLocalization.localization(key: "Species: ") + appLocalization.localization(key: character.type))
-        infoArray.append(appLocalization.localization(key: "Gender: ") + appLocalization.localization(key: character.gender))
-        infoArray.append(appLocalization.localization(key: "Origin place: ") + appLocalization.localization(key: character.origin))
-        infoArray.append(appLocalization.localization(key: "Current location: ") + appLocalization.localization(key: character.location))
-        
-        
-        if let url = URL(string: character.image) {
+        if let url = URL(string: character!.image) {
             imageView.loadImage(from: url)
         }
     }

@@ -40,18 +40,18 @@ final class TableViewPresenter: TableViewOutputProtocol {
     }
     
     func putDataInCell(_ indexPath: IndexPath) {
-        interactor?.putDataInCell(indexPath) { cellData in
+        interactor?.putDataInCell(indexPath) { [weak self] cellData in
             guard let cellData = cellData else {
                 return
             }
-            self.cellData = cellData
+            self?.cellData = cellData
         }
     }
     
     func tableCellTapped(_ indexPath: IndexPath) {
-        interactor?.prepareData(indexPath, completion: { detailInformation in
+        interactor?.prepareData(indexPath, completion: { [weak self] detailInformation in
             let characterVC = ModuleBuilder.createDetailModule(character: detailInformation)
-            self.view?.pushNewView(characterVC)
+            self?.view?.pushNewView(characterVC)
         })
     }
 }

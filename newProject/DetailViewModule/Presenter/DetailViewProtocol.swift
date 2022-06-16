@@ -15,7 +15,7 @@ protocol WorkWithRawDetailData: AnyObject {
     func displayTitle(name: String?)
     /// Помещает информацию о персонаже в массив
     /// - Parameter character: информация об отдельном персонаже
-    func setupDataIntoArray(character: DetailInformation?)
+    func setupDataIntoArray(character: DetailInformation?,_ infoArr: [String])
     /// Помещает в поля textField комментарий к определенному персонажу
     /// - Parameter userModel: Элемент массива, содержащего имя и сам комментарий
     func presentComment(userModel: UserModel)

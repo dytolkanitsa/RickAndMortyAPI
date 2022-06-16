@@ -28,7 +28,8 @@ final class ModuleBuilder: Builder {
     
     static func createDetailModule(character: DetailInformation?) -> UIViewController {
         let view = DetailViewController()
-        let presenter = DetailPresenter(view: view, character: character)
+        let interactor = InteractorDetailView()
+        let presenter = DetailPresenter(view: view, interactor: interactor, character: character)
         view.presenter = presenter
         return view
     }
