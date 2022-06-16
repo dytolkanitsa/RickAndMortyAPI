@@ -10,7 +10,7 @@ import Foundation
 
 final class TableViewController: UIViewController {
     
-    var presenter: TableViewDataCoordination?
+    var presenter: TableViewOutputProtocol?
     
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -93,12 +93,12 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension TableViewController: TableViewParsingResults {
+extension TableViewController: TableViewInputProtocol {
     func reloadTableView() {
         tableView.reloadData()
     }
     
-    func showError(_ error: Error) {
-        print(error)
+    func showError(_ error: Error?) {
+        print(error ?? "error")
     }
 }
