@@ -17,7 +17,4 @@ protocol TableViewInputProtocol: AnyObject {
     /// Отображает ошибку в случае неудачного парсинга API
     /// - Parameter error: ошибка
     func showError(_ error: Error?)
-    /// Отвечает  за показ и настройку презентации переданной вью при взаимодействии пользователя с ячейкой таблицы
-    /// - Parameter view: view, которую необходимо открыть
-//    func pushNewView(_ view: UIViewController)
 }

@@ -8,10 +8,6 @@
 import Foundation
 
 // MARK: - Router Input (Router -> Presenter)
-protocol DetailViewRouterInputProtocol {
-    
-}
+protocol DetailViewRouterInputProtocol { }
 
-final class DetailViewRouter: DetailViewRouterInputProtocol {
-    
-}
+final class DetailViewRouter: DetailViewRouterInputProtocol { }

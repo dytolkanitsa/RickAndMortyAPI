@@ -86,11 +86,6 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         guard tableView.indexPathForSelectedRow != nil else { return }
         presenter?.tableCellTapped(indexPath)
     }
-    
-//    func pushNewView(_ view: UIViewController) {
-//        view.modalPresentationStyle = .fullScreen
-//        self.navigationController?.pushViewController(view, animated: true)
-//    }
 }
 
 extension TableViewController: TableViewInputProtocol {
