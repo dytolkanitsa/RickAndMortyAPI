@@ -10,6 +10,7 @@ import UIKit
 
 /// Инициализация TabBar-a, удовлетворяющего протоколу TabBarProtocol
 final class TabBarPresenter: TabBarPresenterProtocol {
+    
     weak var controller: TabBarProtocol?
     
     init(controller: TabBarProtocol) {

@@ -13,6 +13,12 @@
 		114948C6281A6B4500C42072 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114948C5281A6B4500C42072 /* SearchResponse.swift */; };
 		D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */; };
 		D652F17A2853386A0080F50F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F1792853386A0080F50F /* Extensions.swift */; };
+		D652F17C28588A9D0080F50F /* InteractorMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F17B28588A9D0080F50F /* InteractorMain.swift */; };
+		D652F17F28588BE20080F50F /* RouterMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F17E28588BE20080F50F /* RouterMain.swift */; };
+		D652F1A2285B24DC0080F50F /* InteractorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F1A1285B24DC0080F50F /* InteractorDetail.swift */; };
+		D652F1A5285B25950080F50F /* RouterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F1A4285B25950080F50F /* RouterDetail.swift */; };
+		D652F1A8285B25DE0080F50F /* InteractorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F1A7285B25DE0080F50F /* InteractorInfo.swift */; };
+		D652F1AA285B25F50080F50F /* RouterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D652F1A9285B25F50080F50F /* RouterInfo.swift */; };
 		D657C6D028368136001EFA16 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D657C6D228368136001EFA16 /* Localizable.strings */; };
 		D657C6DB283BB6D0001EFA16 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6DA283BB6D0001EFA16 /* InformationView.swift */; };
 		D657C700283E548A001EFA16 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657C6FF283E548A001EFA16 /* Resources.swift */; };
@@ -50,6 +56,12 @@
 		114948C5281A6B4500C42072 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		D62EA6FC283149D700054AF1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D652F1792853386A0080F50F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D652F17B28588A9D0080F50F /* InteractorMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorMain.swift; sourceTree = "<group>"; };
+		D652F17E28588BE20080F50F /* RouterMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterMain.swift; sourceTree = "<group>"; };
+		D652F1A1285B24DC0080F50F /* InteractorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorDetail.swift; sourceTree = "<group>"; };
+		D652F1A4285B25950080F50F /* RouterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDetail.swift; sourceTree = "<group>"; };
+		D652F1A7285B25DE0080F50F /* InteractorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorInfo.swift; sourceTree = "<group>"; };
+		D652F1A9285B25F50080F50F /* RouterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterInfo.swift; sourceTree = "<group>"; };
 		D657C6D128368136001EFA16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D657C6D32836814F001EFA16 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D657C6DA283BB6D0001EFA16 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
@@ -100,6 +112,54 @@
 				112EDE20281978BB00CA3559 /* NetworkService.swift */,
 			);
 			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		D652F17D28588BBD0080F50F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				D652F17B28588A9D0080F50F /* InteractorMain.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		D652F18028588BE80080F50F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D652F17E28588BE20080F50F /* RouterMain.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		D652F1A3285B24E00080F50F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				D652F1A1285B24DC0080F50F /* InteractorDetail.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		D652F1A6285B259C0080F50F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D652F1A4285B25950080F50F /* RouterDetail.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		D652F1AB285B26040080F50F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				D652F1A7285B25DE0080F50F /* InteractorInfo.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		D652F1AC285B260D0080F50F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D652F1A9285B25F50080F50F /* RouterInfo.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		D66AAA3E28195F2900D12BEA = {
@@ -190,14 +250,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D6BA6F4C2849F67300543F13 /* Model */ = {
+		D6BA6F4C2849F67300543F13 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				114948C5281A6B4500C42072 /* SearchResponse.swift */,
 				D6BA6F55284A2B4A00543F13 /* DetailInformation.swift */,
 				D6BA6F57284A2B6A00543F13 /* CellData.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		D6BA6F4D2849F69A00543F13 /* Presenter */ = {
@@ -232,9 +292,11 @@
 		D6BA6F502849F70B00543F13 /* MainPageModule */ = {
 			isa = PBXGroup;
 			children = (
-				D6BA6F4C2849F67300543F13 /* Model */,
 				D6BA6F4F2849F6D400543F13 /* View */,
+				D652F17D28588BBD0080F50F /* Interactor */,
 				D6BA6F4E2849F6CA00543F13 /* Presenter */,
+				D6BA6F4C2849F67300543F13 /* Entity */,
+				D652F18028588BE80080F50F /* Router */,
 			);
 			path = MainPageModule;
 			sourceTree = "<group>";
@@ -250,9 +312,11 @@
 		D6BA6F522849F74F00543F13 /* DetailViewModule */ = {
 			isa = PBXGroup;
 			children = (
-				D6BA6F5C284A2E2800543F13 /* Model */,
 				D6BA6F512849F72F00543F13 /* View */,
+				D652F1A3285B24E00080F50F /* Interactor */,
 				D6BA6F3F2847B3E100543F13 /* Presenter */,
+				D6BA6F5C284A2E2800543F13 /* Entity */,
+				D652F1A6285B259C0080F50F /* Router */,
 			);
 			path = DetailViewModule;
 			sourceTree = "<group>";
@@ -270,27 +334,29 @@
 		D6BA6F542849F78700543F13 /* InformationModule */ = {
 			isa = PBXGroup;
 			children = (
-				D6BA6F5B284A2DC600543F13 /* Model */,
 				D6BA6F532849F77300543F13 /* View */,
+				D652F1AB285B26040080F50F /* Interactor */,
 				D6BA6F432847BAF300543F13 /* Presenter */,
+				D6BA6F5B284A2DC600543F13 /* Entity */,
+				D652F1AC285B260D0080F50F /* Router */,
 			);
 			path = InformationModule;
 			sourceTree = "<group>";
 		};
-		D6BA6F5B284A2DC600543F13 /* Model */ = {
+		D6BA6F5B284A2DC600543F13 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				D6BA6F59284A2D9500543F13 /* CatsInformation.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
-		D6BA6F5C284A2E2800543F13 /* Model */ = {
+		D6BA6F5C284A2E2800543F13 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				D6BA6E672845FB5A00543F13 /* UserModelStruct.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		D6F4B9982833A56D00019052 /* Helpers */ = {
@@ -388,20 +454,26 @@
 				D657C702283E670D001EFA16 /* TabBarController.swift in Sources */,
 				D62EA6FD283149D700054AF1 /* CustomTableViewCell.swift in Sources */,
 				D657C700283E548A001EFA16 /* Resources.swift in Sources */,
+				D652F1A2285B24DC0080F50F /* InteractorDetail.swift in Sources */,
 				D6BA6E682845FB5A00543F13 /* UserModelStruct.swift in Sources */,
 				D66AAA4F28195F2900D12BEA /* TableViewController.swift in Sources */,
 				D6BA6F6A284A2FA400543F13 /* InformationViewProtocol.swift in Sources */,
 				D6BA6F2B2847898D00543F13 /* ModuleBuilder.swift in Sources */,
+				D652F1A5285B25950080F50F /* RouterDetail.swift in Sources */,
 				D66AAA4B28195F2900D12BEA /* AppDelegate.swift in Sources */,
 				D6BA6F68284A2F6600543F13 /* DetailViewPresenterProtocol.swift in Sources */,
+				D652F17C28588A9D0080F50F /* InteractorMain.swift in Sources */,
 				D6BA6F272847761E00543F13 /* TableViewPresenter.swift in Sources */,
 				D652F17A2853386A0080F50F /* Extensions.swift in Sources */,
 				D68D5A982840BA8E00EF00B2 /* UserComment.swift in Sources */,
+				D652F17F28588BE20080F50F /* RouterMain.swift in Sources */,
 				D6BA6F6C284A2FC800543F13 /* InformationViewPresenterProtocol.swift in Sources */,
+				D652F1AA285B25F50080F50F /* RouterInfo.swift in Sources */,
 				D6BA6F5E284A2E6C00543F13 /* TabBarProtocol.swift in Sources */,
 				D657C6DB283BB6D0001EFA16 /* InformationView.swift in Sources */,
 				D6BA6F56284A2B4A00543F13 /* DetailInformation.swift in Sources */,
 				D6BA6F462848E06D00543F13 /* TabBarPesenter.swift in Sources */,
+				D652F1A8285B25DE0080F50F /* InteractorInfo.swift in Sources */,
 				D657C704283E7DBB001EFA16 /* GalleryCollectionView.swift in Sources */,
 				11184BC3281BEBFC00DCE906 /* DetailViewController.swift in Sources */,
 				D6BA6F62284A2ED300543F13 /* TableViewProtocol.swift in Sources */,

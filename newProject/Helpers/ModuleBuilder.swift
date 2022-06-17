@@ -2,7 +2,7 @@
 //  ModuleBuilder.swift
 //  newProject
 //
-//  Created by Толканица Дарья Юрьевна on 01.06.2022.
+//  Created by Толканица Дарья on 01.06.2022.
 //
 
 import Foundation
@@ -19,16 +19,18 @@ protocol Builder: AnyObject {
 final class ModuleBuilder: Builder {
     
     static func createTableViewModule() -> UIViewController {
-        let networkService = NetworkService()
         let view = TableViewController()
-        let presenter = TableViewPresenter(view: view, networkService: networkService)
+        let interactor = InteractorMainPage()
+        let router = RouterMainPage()
+        let presenter = TableViewPresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         return view
     }
     
     static func createDetailModule(character: DetailInformation?) -> UIViewController {
         let view = DetailViewController()
-        let presenter = DetailPresenter(view: view, character: character)
+        let interactor = InteractorDetailView()
+        let presenter = DetailPresenter(view: view, interactor: interactor, character: character)
         view.presenter = presenter
         return view
     }

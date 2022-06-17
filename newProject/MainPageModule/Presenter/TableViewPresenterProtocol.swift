@@ -2,14 +2,15 @@
 //  TableViewPresenterProtocol.swift
 //  newProject
 //
-//  Created by Толканица Дарья Юрьевна on 03.06.2022.
+//  Created by Толканица Дарья on 03.06.2022.
 //
 
 import Foundation
 import UIKit
 
+// MARK: - View Output (Presenter-> View)
 /// Протокол отвечает за отображение информации в таблице и передачу информации другому вью при нажатии на отдельную ячейку
-protocol TableViewDataCoordination: AnyObject {
+protocol TableViewOutputProtocol: AnyObject {
     var response: SearchResponse? { get set }
     var resultsCount: Int? { get set }
     var cellData: CellData? { get set }

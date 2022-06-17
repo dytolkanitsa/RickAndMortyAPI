@@ -8,50 +8,49 @@
 import Foundation
 import UIKit
 
-final class TableViewPresenter: TableViewDataCoordination {
-
-    weak var view: TableViewParsingResults?
-    let networkService: NetworkServiceProtocol?
-    var response: SearchResponse?
+final class TableViewPresenter: TableViewOutputProtocol {
     
+    weak var view: TableViewInputProtocol? // view
+    var interactor: InteractorMainPageOutputProtocol? // interactor
+    var router: TableViewRouterInputProtocol? // router
+    
+    var response: SearchResponse?
     var resultsCount: Int?
+    
     var cellData: CellData?
     var detailInformation: DetailInformation?
     
-    init(view:TableViewParsingResults, networkService: NetworkServiceProtocol) {
+    init(view: TableViewInputProtocol, interactor: InteractorMainPageOutputProtocol, router: TableViewRouterInputProtocol) {
         self.view = view
-        self.networkService = networkService
-        fetchData()
+        self.interactor = interactor
+        self.router = router
+        getData()
+    }
+    
+    func getData() {
+        interactor?.fetchData { [weak self] networkResponsse, numberOfResults, networkError in
+            guard let networkResponsse1 = networkResponsse, let numberOfResults1 = numberOfResults else {
+                self?.view?.showError(networkError)
+                return
+            }
+            self?.response = networkResponsse1
+            self?.resultsCount = numberOfResults1
+            self?.view?.reloadTableView()
+        }
     }
     
     func putDataInCell(_ indexPath: IndexPath) {
-        let oneCharacterInformation = response?.results[indexPath.row]
-        guard let character = oneCharacterInformation else { return }
-        cellData = CellData(title: character.name, image: character.image)
+        interactor?.putDataInCell(indexPath) { [weak self] cellData in
+            guard let cellData = cellData else {
+                return
+            }
+            self?.cellData = cellData
+        }
     }
     
     func tableCellTapped(_ indexPath: IndexPath) {
-        let selectedCharacter = response?.results[indexPath.row]
-        guard let character = selectedCharacter else { return }
-        detailInformation = DetailInformation(id: character.id, name: character.name, status: character.status.rawValue, species: character.species.rawValue, type: character.type, gender: character.gender.rawValue, origin: character.origin.name, location: character.location.name, image: character.image)
-        let characterVC = ModuleBuilder.createDetailModule(character: detailInformation)
-        view?.pushNewView(characterVC)
-    }
-    
-    func fetchData() {
-        let nerworkCharacterManager = NetworkService()
-        let urlString = "https://rickandmortyapi.com/api/character"
-        nerworkCharacterManager.fetchRMCharacters(urlString: urlString) { [weak self] (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let searchResponse):
-                    self?.response = searchResponse
-                    self?.resultsCount = self?.response?.results.count
-                    self?.view?.reloadTableView()
-                case .failure(let error):
-                    self?.view?.showError(error)
-                }
-            }
-        }
+        interactor?.prepareData(indexPath, completion: { [weak self] detailInformation in
+            self?.router?.showCharacterDetail(on: self?.view, with: detailInformation)
+        })
     }
 }

@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+// MARK: - View Output (Presenter-> View)
 protocol DetailViewPresenterProtocol: AnyObject {
     func viewDidLoad()
+    func putDataIntoArray()
 }

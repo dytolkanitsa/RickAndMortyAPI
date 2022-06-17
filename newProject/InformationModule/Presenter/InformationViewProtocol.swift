@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - View Input (View -> Presenter)
 /// Отвечает за отображение информации о разработчике
 protocol InformationViewProtocol: AnyObject {
     ///  Устанавливает имя разработчика в лэйбл
