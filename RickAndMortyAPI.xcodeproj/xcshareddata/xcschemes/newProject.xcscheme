@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D66AAA4628195F2900D12BEA"
                BuildableName = "newProject.app"
-               BlueprintName = "newProject"
-               ReferencedContainer = "container:newProject.xcodeproj">
+               BlueprintName = "RickAndMortyAPI"
+               ReferencedContainer = "container:RickAndMortyAPI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,8 +46,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D66AAA4628195F2900D12BEA"
             BuildableName = "newProject.app"
-            BlueprintName = "newProject"
-            ReferencedContainer = "container:newProject.xcodeproj">
+            BlueprintName = "RickAndMortyAPI"
+            ReferencedContainer = "container:RickAndMortyAPI.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D66AAA4628195F2900D12BEA"
             BuildableName = "newProject.app"
-            BlueprintName = "newProject"
-            ReferencedContainer = "container:newProject.xcodeproj">
+            BlueprintName = "RickAndMortyAPI"
+            ReferencedContainer = "container:RickAndMortyAPI.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
