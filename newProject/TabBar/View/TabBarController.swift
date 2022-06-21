@@ -5,18 +5,17 @@
 //  Created by Толканица Дарья on 25.05.2022.
 //
 
-import Foundation
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
-    var presenter: TabBarPresenterProtocol?
+    var output: TabBarOutputProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tableViewVC = ModuleBuilder.createTableViewModule()
-        let informationVC = ModuleBuilder.createInformationView()
+        let tableViewVC = ModuleBuilder.createMainModule()
+        let informationVC = ModuleBuilder.createInformationModule()
         
         tableViewVC.title = appLocalization.localization(key: "[Characters]")
         informationVC.title = appLocalization.localization(key: "[Information]")
@@ -28,14 +27,14 @@ class TabBarController: UITabBarController {
         guard let items = self.tabBar.items else {return}
 
         let images = ["rick", "morty"]
-
-        for x in 0..<items.count {
-            items[x].image = UIImage(named: images[x])?.withRenderingMode(.alwaysOriginal)
+        
+        zip(items, images).forEach { item, imageName in
+            item.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
         }
     }
 }
 
-extension TabBarController: TabBarProtocol { }
+extension TabBarController: TabBarInputProtocol { }
 
 class LightContentNavigationController: UINavigationController {
 
