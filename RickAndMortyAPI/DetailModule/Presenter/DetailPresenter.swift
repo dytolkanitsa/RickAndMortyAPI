@@ -47,7 +47,7 @@ final class DetailPresenter: DetailOutputProtocol {
     func putDataIntoArray() {
         
         guard let character = character else { return }
-        // создать в моменте передачи во вью
+
         infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
         infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status))
         infoArray.append(appLocalization.localization(key: "Type: ") + appLocalization.localization(key: character.species))

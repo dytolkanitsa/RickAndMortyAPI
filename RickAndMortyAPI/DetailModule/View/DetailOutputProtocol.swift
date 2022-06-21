@@ -8,9 +8,13 @@
 import Foundation
 
 // MARK: - View Output (Presenter -> View)
+/// Отвечает за логику отработки нажатия на кнопку сохранения
 protocol DetailOutputProtocol: AnyObject {
     func viewDidLoad()
     
-    // действие пользоввтель оставил коммент, чтобы вью сказала презентеру , а тот интерактору
+    /// Получает оставленный пользователем комментарий при нажатии на кнопку сохранения
+    /// - Parameters:
+    ///   - name: имя пользователя
+    ///   - comment: комментарий
     func saveButtonTapped(_ name: String, _ comment: String)
 }

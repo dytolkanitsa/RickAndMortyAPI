@@ -16,11 +16,13 @@ protocol DetailInputProtocol: AnyObject {
     /// Устанавливает переданную строку  в качестве текста  в лэйбле
     /// - Parameter name: имя персонажа
     func displayTitle(name: String)
-    /// Помещает информацию о персонаже в массив
-    /// - Parameter character: информация об отдельном персонаже
+    /// станавливает переданный UIImage  в икноку персонажа
+    /// - Parameter image: изображние выбранного персонажа
     func displayImage(image: UIImage)
     /// Помещает в поля textField комментарий к определенному персонажу
     /// - Parameter userModel: Элемент массива, содержащего имя и сам комментарий
     func displayComment(userModel: UserModel)
+    /// Отображение ошишбки в случае неудачной работы сервиса
+    /// - Parameter error: ошибка
     func showError(error: Error)
 }

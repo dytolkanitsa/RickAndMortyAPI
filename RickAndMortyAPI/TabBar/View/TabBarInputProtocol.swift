@@ -7,4 +7,5 @@
 
 import Foundation
 
+// MARK: - View Input (View -> Presenter)
 protocol TabBarInputProtocol: AnyObject { }

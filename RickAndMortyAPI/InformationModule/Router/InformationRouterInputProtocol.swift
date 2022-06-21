@@ -8,6 +8,4 @@
 import Foundation
 
 // MARK: - Router Input (Router -> Presenter)
-protocol InformationRouterInputProtocol {
-    
-}
+protocol InformationRouterInputProtocol { }

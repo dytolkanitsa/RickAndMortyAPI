@@ -242,7 +242,6 @@ extension DetailController: DetailInputProtocol {
     }
     
     func displayImage(image: UIImage) {
-        // отдельный стэк для лейблов, потом добавить стэк в стэк
         imageView.image = image
     }
     
@@ -252,6 +251,8 @@ extension DetailController: DetailInputProtocol {
     }
     
     func showError(error: Error) {
-        print("\(error)")
+        let alert = UIAlertController(title: "Failed to upload image", message: "Please reload page", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action: UIAlertAction!) in print("OK button was pressed")}))
+        self.present(alert, animated: true, completion: nil)
     }
 }

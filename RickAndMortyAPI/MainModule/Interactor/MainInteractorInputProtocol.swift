@@ -8,7 +8,10 @@
 import Foundation
 
 // MARK: - Interacor Input (Interactor -> Presenter)
+/// Отвечает за парсинг и создание экземпляра структуры SearchResponse
 protocol MainInteractorInputProtocol: AnyObject {
-    ///  переделать на Result в фетчдата
+
+    ///  Парсинг и получение данных из API
+    /// - Parameter completion: SearchResponse - результат парсинга, Error - ошибка в случае ее возникнования
     func fetchData(completion: @escaping (Result<SearchResponse?, Error>) -> Void)
 }

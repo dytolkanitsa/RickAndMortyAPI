@@ -93,9 +93,9 @@ extension MainController: MainInputProtocol {
         tableView.reloadData()
     }
     
-    // allert
-    // опциональный еррор убрать
     func showError(_ error: Error) {
-        print(error)
+        let alert = UIAlertController(title: "Network error", message: "Please reload page", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action: UIAlertAction!) in print("OK button was pressed")}))
+        self.present(alert, animated: true, completion: nil)
     }
 }
