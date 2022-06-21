@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class UserComment {
+final class UserCommentService {
     
     private enum CommentKeys: String {
         case userModel

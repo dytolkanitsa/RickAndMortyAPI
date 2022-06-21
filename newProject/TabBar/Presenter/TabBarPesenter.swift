@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 /// Инициализация TabBar-a, удовлетворяющего протоколу TabBarProtocol
-final class TabBarPresenter: TabBarPresenterProtocol {
+final class TabBarPresenter: TabBarOutputProtocol {
     
-    weak var controller: TabBarProtocol?
+    weak var controller: TabBarInputProtocol?
     
-    init(controller: TabBarProtocol) {
+    init(controller: TabBarInputProtocol) {
         self.controller = controller
     }
 }

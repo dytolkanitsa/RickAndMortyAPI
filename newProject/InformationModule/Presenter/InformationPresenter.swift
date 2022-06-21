@@ -5,14 +5,13 @@
 //  Created by Толканица Дарья Юрьевна on 01.06.2022.
 //
 
-import Foundation
 import UIKit
 
-final class InformationPresenter: InformationViewPresenterProtocol {
+final class InformationPresenter: InformationOutputProtocol {
     
-    weak var view: InformationViewProtocol?
+    weak var view: InformationInputProtocol?
     
-    init(view: InformationViewProtocol) {
+    init(view: InformationInputProtocol) {
         self.view = view
     }
     
