@@ -162,7 +162,9 @@ final class DetailController: UIViewController {
     
     @objc func tapButton() {
         saveButton.shake()
-        guard let nameText = nameTextField.text, let commentText = commentTextField.text else { return }
+        guard let nameText = nameTextField.text, let commentText = commentTextField.text else {
+            return
+        }
         output?.saveButtonTapped(nameText, commentText)
     }
     

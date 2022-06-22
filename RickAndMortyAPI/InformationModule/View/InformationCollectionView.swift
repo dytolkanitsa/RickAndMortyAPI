@@ -43,7 +43,7 @@ final class InformationCollectionView: UICollectionView, UICollectionViewDelegat
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? InformationCollectionViewCell else {
-            return self.dequeueReusableCell(withReuseIdentifier: "clearCell", for: indexPath)
+            return UICollectionViewCell()
         }
         cell.mainImageView.image = cellsCats[indexPath.row].catsImage
         return cell
@@ -51,7 +51,9 @@ final class InformationCollectionView: UICollectionView, UICollectionViewDelegat
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         for cell in self.visibleCells {
-            guard let indexPath = self.indexPath(for: cell) else { return }
+            guard let indexPath = self.indexPath(for: cell) else {
+                return
+            }
             presenter?.showImageIndex(indexPath, cellsCats.count)
         }
     }

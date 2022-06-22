@@ -12,7 +12,6 @@ final class ModuleBuilder: ModuleBuilderProtocol {
     static func createMainModule() -> UIViewController {
         let mainView = MainController()
         let interactor = MainInteractor()
-        // передавать контроллер в роутер отсюда
         let router = MainRouter(mainView)
         let output = MainPresenter(view: mainView, interactor: interactor, router: router)
         mainView.output = output

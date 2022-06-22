@@ -25,25 +25,29 @@ final class MainPresenter: MainOutputProtocol {
         self.interactor?.fetchData { [weak self] (result) in
             switch result {
             case .success(let searchResponse):
-                self?.response = searchResponse
-                self?.view?.response = searchResponse
-                self?.view?.reloadTable()
+                self?.processSuccessResponse(searchResponse)
             case .failure(let error):
                 self?.view?.showError(error)
             }
         }
     }
     
-    func putDataInCell(_ indexPath: IndexPath) {
-        let oneCharacterInformation = response?.results[indexPath.row]
-        guard let character = oneCharacterInformation else { return }
-        self.view?.characterData = CellData(title: character.name, image: character.image)
+    func processSuccessResponse(_ searchResponse: SearchResponse?) {
+        response = searchResponse
+        let cellData = response?.results.compactMap({ data in
+            CellData(title: data.name, image: data.image)
+        })
+        view?.display(cellData: cellData ?? [])
+        view?.reloadTable()
     }
     
     func tableCellTapped(_ indexPath: IndexPath) {
         let selectedCharacter = response?.results[indexPath.row]
-        guard let character = selectedCharacter else { return }
+        guard let character = selectedCharacter else {
+            return
+        }
         let detailInformation = DetailInformation(id: character.id, name: character.name, status: character.status.rawValue, species: character.species.rawValue, type: character.type, gender: character.gender.rawValue, origin: character.origin.name, location: character.location.name, image: character.image)
         self.router?.showCharacterDetail(on: self.view, with: detailInformation)
     }
+    
 }

@@ -10,8 +10,7 @@ import UIKit
 final class MainController: UIViewController {
     
     var output: MainOutputProtocol?
-    var characterData: CellData?
-    var response: SearchResponse?
+    var cellData: [CellData] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -67,17 +66,17 @@ final class MainController: UIViewController {
 extension MainController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return response?.results.count ?? 0
+        cellData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainCustomTableViewCell else {
-            return tableView.dequeueReusableCell(withIdentifier: "clearCell", for: indexPath) }
-        output?.putDataInCell(indexPath)
-        guard let characterData = characterData else { return cell }
+            return UITableViewCell()
+        }
+        let characterData = cellData[indexPath.row]
         cell.set(character: characterData)
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -88,6 +87,11 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainController: MainInputProtocol {
+    
+    func display(cellData: [CellData]) {
+        self.cellData = cellData
+    }
+    
     func reloadTable() {
         tableView.reloadData()
     }
