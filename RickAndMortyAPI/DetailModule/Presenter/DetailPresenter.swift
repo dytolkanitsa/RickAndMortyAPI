@@ -25,7 +25,9 @@ final class DetailPresenter: DetailOutputProtocol {
     }
     
     func viewDidLoad() {
-        guard let character = character else { return }
+        guard let character = character else {
+            return
+        }
         view?.displayTitle(name: character.name)
         findComment()
     }
@@ -35,7 +37,9 @@ final class DetailPresenter: DetailOutputProtocol {
     }
     
     func findComment() {
-        guard let character = character else { return }
+        guard let character = character else {
+            return
+        }
         UserCommentService.userModel.enumerated().forEach({ index, item in
             
             if UserCommentService.userModel[index].id == character.id{
@@ -46,8 +50,9 @@ final class DetailPresenter: DetailOutputProtocol {
     
     func putDataIntoArray() {
         
-        guard let character = character else { return }
-
+        guard let character = character else {
+            return
+        }
         infoArray.append(appLocalization.localization(key: "Name: ") + appLocalization.localization(key: character.name))
         infoArray.append(appLocalization.localization(key: "Status: ") + appLocalization.localization(key: character.status))
         infoArray.append(appLocalization.localization(key: "Type: ") + appLocalization.localization(key: character.type))
@@ -63,13 +68,19 @@ final class DetailPresenter: DetailOutputProtocol {
     
     func getImage() {
         
-        guard let character = character else { return }
-        guard let url = URL(string: character.image) else { return }
+        guard let character = character else {
+            return
+        }
+        guard let url = URL(string: character.image) else {
+            return
+        }
         
         interactor?.loadImage(url: url, completion: { result in
             switch result {
             case .success(let image):
-                guard let image = image else { return }
+                guard let image = image else {
+                    return
+                }
                 self.view?.displayImage(image: image)
             case .failure(let error):
                 self.view?.showError(error: error)

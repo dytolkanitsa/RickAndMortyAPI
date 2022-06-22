@@ -15,7 +15,9 @@ final class UserCommentService {
     
     static var userModel: [UserModel] {
         get {
-            guard let data = UserDefaults.standard.object(forKey: CommentKeys.userModel.rawValue) as? Data else {return [UserModel]()}
+            guard let data = UserDefaults.standard.object(forKey: CommentKeys.userModel.rawValue) as? Data else {
+                return [UserModel]()
+            }
             let user = try? JSONDecoder().decode([UserModel].self, from: data)
             return user ?? [UserModel]()
         } set {

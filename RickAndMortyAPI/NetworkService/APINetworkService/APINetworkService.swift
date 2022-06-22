@@ -10,7 +10,9 @@ import UIKit
 final class APINetworkService: APINetworkServiceProtocol {
     
     func fetchRMCharacters(urlString: String, completion: @escaping (Result<SearchResponse, Error>) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else {
+            return
+        }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {

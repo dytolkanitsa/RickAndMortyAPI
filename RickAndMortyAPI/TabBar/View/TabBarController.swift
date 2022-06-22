@@ -24,8 +24,9 @@ final class TabBarController: UITabBarController {
         let navigationContrInf = LightContentNavigationController(rootViewController: informationVC)
         
         self.setViewControllers([navigationContrTV, navigationContrInf], animated: false)
-        guard let items = self.tabBar.items else {return}
-
+        guard let items = self.tabBar.items else {
+            return
+        }
         let images = ["rick", "morty"]
         
         zip(items, images).forEach { item, imageName in

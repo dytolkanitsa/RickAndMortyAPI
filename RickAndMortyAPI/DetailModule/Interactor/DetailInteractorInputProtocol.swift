@@ -11,6 +11,7 @@ import UIKit
 // MARK: - Interacor Input (Interactor -> Presenter)
 /// Отвечает за загрузку изображения и сохранение комментария, оставленного пользователем
 protocol DetailInteractorInputProtocol: AnyObject {
+    
     /// Загрузка изображения по переданному url адресу
     /// - Parameters:
     ///   - url: url адрес

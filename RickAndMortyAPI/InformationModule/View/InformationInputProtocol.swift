@@ -10,6 +10,7 @@ import Foundation
 // MARK: - View Input (View -> Presenter)
 /// Отвечает за отображение информации о разработчике и индекс ячейки в collection view, отображенной на экране
 protocol InformationInputProtocol: AnyObject {
+    
     /// Устанавливает имя разработчика в лэйбл
     func showLabelText()
     /// Получает индекс и общее количество ячеек в collection view
