@@ -25,4 +25,6 @@ protocol DetailInputProtocol: AnyObject {
     /// Отображение ошишбки в случае неудачной работы сервиса
     /// - Parameter error: ошибка
     func showError(error: Error)
+    /// Создает стэк лэйблов с детальной информацией о персонаже
+    func createLabelsStack()
 }

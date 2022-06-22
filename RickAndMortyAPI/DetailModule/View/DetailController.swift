@@ -28,7 +28,7 @@ final class DetailController: UIViewController {
         detailStackView.distribution = .fill
         detailStackView.alignment = .fill
         detailStackView.spacing = 10
-        detailStackView.layoutMargins = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        detailStackView.layoutMargins = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
         detailStackView.isLayoutMarginsRelativeArrangement = true
         return detailStackView
     }()
@@ -63,7 +63,7 @@ final class DetailController: UIViewController {
     private let textFieldStack: UIStackView = {
         let textFieldStack = UIStackView()
         textFieldStack.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStack.backgroundColor = appColors.systemMint
+        textFieldStack.backgroundColor = appColors.chatelle
         textFieldStack.heightAnchor.constraint(equalToConstant: 200).isActive = true
         textFieldStack.clipsToBounds = true
         textFieldStack.layer.cornerRadius = 10
@@ -80,7 +80,7 @@ final class DetailController: UIViewController {
         let nameTextField = UITextField()
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        nameTextField.backgroundColor = appColors.systemPink
+        nameTextField.backgroundColor = appColors.lavenderRose
         nameTextField.textColor = appColors.white
         nameTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         nameTextField.font = appFonts.infoLabetsFonts
@@ -93,7 +93,7 @@ final class DetailController: UIViewController {
         let commentTextField = UITextField()
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        commentTextField.backgroundColor = appColors.systemPink
+        commentTextField.backgroundColor = appColors.lavenderRose
         commentTextField.textColor = appColors.white
         commentTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         commentTextField.font = appFonts.infoLabetsFonts
@@ -110,6 +110,19 @@ final class DetailController: UIViewController {
         saveButton.layer.cornerRadius = 15
         saveButton.setTitle("Save", for: .normal)
         return saveButton
+    }()
+    
+    private let informationLabelsStack: UIStackView = {
+        let informationLabelsStack = UIStackView()
+        informationLabelsStack.translatesAutoresizingMaskIntoConstraints = false
+        informationLabelsStack.backgroundColor = appColors.birch
+        informationLabelsStack.axis = .vertical
+        informationLabelsStack.distribution = .fill
+        informationLabelsStack.alignment = .fill
+        informationLabelsStack.spacing = 10
+        informationLabelsStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
+        informationLabelsStack.isLayoutMarginsRelativeArrangement = true
+        return informationLabelsStack
     }()
     
     override func viewDidLoad() {
@@ -196,7 +209,7 @@ final class DetailController: UIViewController {
         return label
     }
     
-    private func createStack(withColor color: UIColor, title: String) -> UIStackView {
+    private func createStackForLabel(withColor color: UIColor, title: String) -> UIStackView {
     
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -219,13 +232,7 @@ final class DetailController: UIViewController {
         detailStackView.setCustomSpacing(30, after: imageViewContainer)
         imageView.contentMode = .scaleAspectFill
         
-        var stack = UIStackView()
-        for labelValue in infoArray {
-            stack = createStack(withColor: appColors.ming ?? .white, title: labelValue)
-            detailStackView.addArrangedSubview(stack)
-        }
-        
-        detailStackView.setCustomSpacing(30, after: stack)
+        detailStackView.addArrangedSubview(informationLabelsStack)
         detailStackView.addArrangedSubview(textFieldStack)
         detailStackView.addArrangedSubview(saveButton)
         
@@ -255,4 +262,13 @@ extension DetailController: DetailInputProtocol {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action: UIAlertAction!) in print("OK button was pressed")}))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func createLabelsStack() {
+        var stack = UIStackView()
+        for labelValue in infoArray {
+            stack = createStackForLabel(withColor: appColors.ming ?? .white, title: labelValue)
+            informationLabelsStack.addArrangedSubview(stack)
+        }
+    }
+    
 }

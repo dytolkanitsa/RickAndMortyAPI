@@ -74,7 +74,6 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainCustomTableViewCell else {
             return tableView.dequeueReusableCell(withIdentifier: "clearCell", for: indexPath) }
-        // убрать вызов презентера
         output?.putDataInCell(indexPath)
         guard let characterData = characterData else { return cell }
         cell.set(character: characterData)

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - View Input (View -> Presenter)
-/// Протокол отвечает за  успешное и неудачное выполнение парсинга API , отображение нового вью
+/// Протокол отвечает результат  успешного и неудачного выполнения парсинга API , отображение нового вью
 protocol MainInputProtocol: AnyObject {
     var characterData: CellData? { get set }
     var response: SearchResponse? { get set }
