@@ -10,6 +10,7 @@ import Foundation
 // MARK: - View Output (Presenter -> View)
 /// Отвечает за отображение данных, полученных из презентера
 protocol InformationOutputProtocol: AnyObject {
+    
     func viewDidLoad()
     /// Метод отвечает за передачу во view индекса ячейки, на которой пользователь находится в данный момент, и вывод ее на экран
     ///  - Parameters:

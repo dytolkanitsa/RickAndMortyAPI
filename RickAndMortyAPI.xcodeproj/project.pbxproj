@@ -130,13 +130,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		114948CD281AF06A00C42072 /* INetworkService */ = {
+		114948CD281AF06A00C42072 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
 				D65236B72860B52E00C42380 /* ImageLoading */,
 				D65236B82860B53C00C42380 /* APINetworkService */,
 			);
-			path = INetworkService;
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 		D65236B22860927000C42380 /* ModuleBuilder */ = {
@@ -248,7 +248,7 @@
 				D6BA6F542849F78700543F13 /* InformationModule */,
 				D65236B22860927000C42380 /* ModuleBuilder */,
 				D6F4B9982833A56D00019052 /* Helpers */,
-				114948CD281AF06A00C42072 /* INetworkService */,
+				114948CD281AF06A00C42072 /* NetworkService */,
 				D6BA6E6C28463EBA00543F13 /* AppResources */,
 				D6BA6E6D28463F0200543F13 /* Fonts */,
 				D66AAA4A28195F2900D12BEA /* AppDelegate.swift */,

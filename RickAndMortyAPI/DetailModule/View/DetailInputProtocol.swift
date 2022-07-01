@@ -11,6 +11,7 @@ import UIKit
 // MARK: - View Input (View -> Presenter)
 /// Протокол устанавливает строку в качестве заголовка, помещает информацию в массив для дальнейшей работы
 protocol DetailInputProtocol: AnyObject {
+    
     var infoArray: [String] { get set }
     var characterId: Int { get set }
     /// Устанавливает переданную строку  в качестве текста  в лэйбле

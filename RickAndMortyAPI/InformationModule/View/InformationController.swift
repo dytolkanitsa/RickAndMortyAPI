@@ -93,7 +93,9 @@ final class InformationController: UIViewController {
         setupScrollConstraints()
         setupStackConstraints()
         putThingsInStack()
-        guard let output = output else { return }
+        guard let output = output else {
+            return
+        }
         secondCollection.set(cells: CatsImages.fetchCats(), presenter: output)
     }
     
