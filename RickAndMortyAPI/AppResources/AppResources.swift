@@ -11,6 +11,7 @@ import UIKit
 enum appColors {
     
     // custom colors
+    // Riack And Morty
     static let sprout = UIColor(named: "sprout")
     static let birch = UIColor(named: "birch")
     static let fountainBlue = UIColor(named: "fountainBlue")
@@ -20,6 +21,12 @@ enum appColors {
     static let peppermint = UIColor(named: "peppermint")
     static let lavenderRose = UIColor(named: "lavenderRose")
     
+    // Evangelion
+    static let enegryBlock = UIColor(named: "enegryBlock")
+    static let freshApple = UIColor(named: "freshApple")
+    static let grape = UIColor(named: "grape")
+    static let lilac = UIColor(named: "lilac")
+    
     // appColors
     static let black = UIColor.black
     static let white = UIColor.white
@@ -27,10 +34,9 @@ enum appColors {
     static let systemCyan = UIColor.systemCyan
     static let systemGreen = UIColor.systemGreen
     static let systemMint = UIColor.systemMint
-    static let systemYellow = UIColor(named: "systemYellow")
-    static let systemPink = UIColor(named: "systemPink")
-    static let systemBlue = UIColor(named: "systemBlue")
-    
+    static let systemYellow = UIColor.systemYellow
+    static let systemPink = UIColor.systemPink
+    static let systemBlue = UIColor.systemBlue
 }
 
 enum appFonts {

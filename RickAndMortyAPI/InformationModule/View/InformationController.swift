@@ -82,7 +82,7 @@ final class InformationController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = appColors.sprout
-        appearance.titleTextAttributes = [.foregroundColor: appColors.systemPink ?? appColors.black]
+        appearance.titleTextAttributes = [.foregroundColor: appColors.systemPink]
     
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
