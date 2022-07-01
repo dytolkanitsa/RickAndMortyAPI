@@ -10,8 +10,8 @@ import UIKit
 
 enum appColors {
     
-    // custom colors
-    // Riack And Morty
+    /// custom colors
+    /// Riack And Morty
     static let sprout = UIColor(named: "sprout")
     static let birch = UIColor(named: "birch")
     static let fountainBlue = UIColor(named: "fountainBlue")
@@ -21,13 +21,28 @@ enum appColors {
     static let peppermint = UIColor(named: "peppermint")
     static let lavenderRose = UIColor(named: "lavenderRose")
     
-    // Evangelion
-    static let enegryBlock = UIColor(named: "enegryBlock")
-    static let freshApple = UIColor(named: "freshApple")
-    static let grape = UIColor(named: "grape")
-    static let lilac = UIColor(named: "lilac")
+    /// Evangelion
+    /// Eva01
+    static let saffron = UIColor(named: "saffron")
+    static let conifer = UIColor(named: "conifer")
+    static let victoria = UIColor(named: "victoria")
+    static let scampi = UIColor(named: "scampi")
+    static let mulledWine = UIColor(named: "mulledWine")
     
-    // appColors
+    /// Eva02
+    static let linen = UIColor(named: "linen")
+    static let alizarinCrimson = UIColor(named: "alizarinCrimson")
+    static let bleachedCedar = UIColor(named: "bleachedCedar")
+    static let jaffa = UIColor(named: "jaffa")
+    static let tanHide = UIColor(named: "tanHide")
+    static let sangria = UIColor(named: "sangria")
+    
+    /// Ray
+    static let cannonPink = UIColor(named: "cannonPink")
+    static let pigeonPost = UIColor(named: "pigeonPost")
+    static let shipCove = UIColor(named: "shipCove")
+    
+    /// appColors
     static let black = UIColor.black
     static let white = UIColor.white
     static let gray = UIColor.gray
